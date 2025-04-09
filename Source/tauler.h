@@ -2,6 +2,7 @@
 	#define TAULER_H_
 
 #include "fitxes.h"
+#include <string>
 
 using namespace std;
 
