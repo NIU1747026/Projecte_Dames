@@ -2,6 +2,8 @@
 	#define TAULER_H_
 
 #include "fitxes.h"
+#include "posicio.h"
+#include "moviment.h"
 #include <string>
 
 using namespace std;
