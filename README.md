@@ -3,4 +3,4 @@ Projecte Dames per Metodologia de la Programació.
 
 Creat per:
 Lucas Luna Rodríguez : 1747026
-Ariadna Cano Martínex : 1744801
+Ariadna Cano Martínez : 1744801
