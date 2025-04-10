@@ -19,8 +19,8 @@ typedef enum
 	COLOR_BLANC,
 } ColorFitxa;
 
-const int MAX_MOVIMENTS = 100;
-const int MAX_POSICIONS = 100;
+const int MAX_MOVIMENTS = 50;
+const int MAX_POSICIONS = 65;
 
 class Fitxa
 {
@@ -32,11 +32,14 @@ public:
 	const TipusFitxa getTipus() const { return m_tipus; };
 	void changeTipus(TipusFitxa nouTipus) { m_tipus = nouTipus; };
 
+	void afegeixPosicionsValides(Posicio Valides[MAX_POSICIONS], int& nValides); // afegeix a l'array valides, les posicions valides de la fitxa, amb compte de no repetir-ne cap que ja estigui
+
 	void actualitzaMovimentsFitxa(Tauler tauler[N_FILES][N_COLUMNES], const Posicio& origen); // actualitza/refa llista de moviments vàlids de fitxa,
 
-	bool movimentEsValid(const Posicio& destí); //mira destins de la llista de moviments y retorna true si hi es.
-
+	bool fesMoviment(Tauler tauler[N_FILES][N_COLUMNES], const Posicio& destí);
 private:
+	bool movimentEsValid(const Posicio& destí); //mira destins de la llista de moviments y retorna true si hi es.
+	
 	//metode per afegir moviment a llista y mirar consecutius(?) // 
 	// Posició[MAX_POSICIONS] getPosicionsValides(const Posicio& origen int& nPosValides);
 	// afegeixMoviment(Moviment& nouMoviment);
@@ -47,7 +50,7 @@ private:
 	int m_nMovimentsValids;
 	Moviment m_movimentValids[MAX_MOVIMENTS];
 	int m_nPosicionsValides;
-	Posicio m_posicionsValide[MAX_POSICIONS];
+	Posicio m_posicionsValides[MAX_POSICIONS];
 };
 
 #endif
