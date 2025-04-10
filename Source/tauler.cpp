@@ -78,7 +78,9 @@ string Tauler::toString() const
 		{
 			escriureFitxes(m_tauler, files, columna, res); 
 		}
+		res.append("\n");
 	}
+	return res;
 }
 void Tauler::actualitzaMovimentsValids()
 {
@@ -89,6 +91,26 @@ void Tauler::actualitzaMovimentsValids()
 		{
 			fitxa.setPos(fila, columna);
 			m_tauler[fila][columna].actualitzaMovimentsFitxa(m_tauler, fitxa.toString());
+		}
+	}
+}
+void Tauler::inicialitza() //inicialitzar partida desde zero
+{
+	for (int fila = 0; fila < N_FILES; fila++)
+	{
+		for (int columna = 0; columna < N_COLUMNES; columna++)
+		{
+			if (((fila % 2 != 0) && (columna % 2 != 0)) || ((fila % 2 == 0) && (columna % 2 == 0)))
+			{
+				if (fila >= 0 && fila <= 2)
+				{
+					m_tauler[fila][columna].inicialitza(COLOR_BLANC, TIPUS_NORMAL);
+				}
+				else if (fila >= 5 && fila <= 7)
+				{
+					m_tauler[fila][columna].inicialitza(COLOR_NEGRE, TIPUS_NORMAL);
+				}
+			}
 		}
 	}
 }
