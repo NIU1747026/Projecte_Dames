@@ -10,7 +10,7 @@ const int MAX_RECORREGUT = 20;
 class Moviment
 {
 public:
-	Moviment(): m_nRecorregut(0), m_menjat(false) {};
+	Moviment(): m_nRecorregut(0) {};
 
 	const Posicio getPosFinal() const { 
 		if (m_nRecorregut > 0)
@@ -20,15 +20,13 @@ public:
 	//retornar recorregut?
 	//ret fitxes menjades
 
-	void setMenjat(bool menjat) { m_menjat = menjat; };
 
-	void afegeixPos(Posicio& pos) { m_recorregut[m_nRecorregut] = pos; m_nRecorregut++; };
-
+	//void afegeixPos(Posicio& pos) { m_recorregut[m_nRecorregut] = pos; m_nRecorregut++; };
+	//bool operator==(const Moviment& mov);
 private:
 	//Posicio m_posFinal = recorregut[m_nRecorregut];
-	//int m_fitxesMenjades = m_nRecorregut;
+	int m_fitxesMenjades;
 
-	bool m_menjat;
 	int m_nRecorregut;
 	Posicio m_recorregut[MAX_RECORREGUT];
 };

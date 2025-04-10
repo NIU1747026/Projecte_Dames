@@ -14,6 +14,7 @@ public:
 	Posicio(const string& posicio) { m_fila = 7 - posicio[1] + '1'; m_columna = posicio[0] - 'a'; };
 
 	void setPos(int fila, int columna) { m_fila = fila; m_columna = columna; };
+	void setPos(const string& posicio) { m_fila = 7 - posicio[1] + '1'; m_columna = posicio[0] - 'a'; };
 	int getFila() const { return m_fila; };
 	int getColumna() const { return m_columna; };
 
