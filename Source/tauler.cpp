@@ -2,7 +2,6 @@
 #include <iostream>
 #include <fstream>
 using namespace std;
-//falta tauler i que fitxa tingui posicio
 void Tauler::inicialitza(const string& nomFitxer)
 {
 	ifstream fitxer;
@@ -39,8 +38,6 @@ void Tauler::inicialitza(const string& nomFitxer)
 	}
 	fitxer.close();
 }
-
-//hay que cambiarlo para que sea viable en el tauler
 void escriureFitxes(const Fitxa tauler[N_FILES][N_COLUMNES], int fila, int columna, string& res)
 {
 	switch (tauler[fila][columna].getTipus())
@@ -80,6 +77,18 @@ string Tauler::toString() const
 		for (int columna = 0; columna < N_COLUMNES; columna++)
 		{
 			escriureFitxes(m_tauler, files, columna, res); 
+		}
+	}
+}
+void Tauler::actualitzaMovimentsValids()
+{
+	Posicio fitxa;
+	for (int fila = 0; fila < N_FILES; fila++)
+	{
+		for (int columna = 0; columna < N_COLUMNES; columna++)
+		{
+			fitxa.setPos(fila, columna);
+			m_tauler[fila][columna].actualitzaMovimentsFitxa(m_tauler, fitxa.toString());
 		}
 	}
 }
