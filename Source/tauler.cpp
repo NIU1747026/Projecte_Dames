@@ -114,3 +114,9 @@ void Tauler::inicialitza() //inicialitzar partida desde zero
 		}
 	}
 }
+void Tauler::getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posicio posicionsPossibles[])
+{
+	nPosicions = 0;
+	m_tauler[origen.getFila()][origen.getColumna()].afegeixPosicionsValides(posicionsPossibles, nPosicions);
+}
+
