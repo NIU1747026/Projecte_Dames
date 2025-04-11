@@ -32,7 +32,7 @@ public:
 	const TipusFitxa getTipus() const { return m_tipus; };
 	void changeTipus(TipusFitxa nouTipus) { m_tipus = nouTipus; };
 
-	void actualitzaMovimentsFitxa(Tauler tauler[N_FILES][N_COLUMNES], const Posicio& origen); // actualitza/refa llista de moviments vàlids de fitxa,
+	void actualitzaMovimentsFitxa(Fitxa tauler[N_FILES][N_COLUMNES], const Posicio& origen); // actualitza/refa llista de moviments vàlids de fitxa,
 
 	void afegeixPosicionsValides(Posicio Valides[MAX_POSICIONS], int& nValides); // afegeix a l'array valides, les posicions valides de la fitxa, amb compte de no repetir-ne cap que ja estigui
 
@@ -41,7 +41,7 @@ public:
 private:
 	bool trobaMoviment(const Posicio& desti, Moviment& mov);
 
-	void getPosicionsValides(Tauler tauler[N_FILES][N_COLUMNES], const Posicio& origen, Posicio posicionsPendents[MAX_POSICIONS], int& nPendents);
+	void getPosicionsValides(Fitxa tauler[N_FILES][N_COLUMNES], const Posicio& origen, Posicio posicionsPendents[MAX_POSICIONS], int& nPendents);
 	//metode per afegir moviment a llista y mirar consecutius(?) // 
 	// Posició[MAX_POSICIONS] getPosicionsValides(const Posicio& origen int& nPosValides);
 	// afegeixMoviment(Moviment& nouMoviment);
