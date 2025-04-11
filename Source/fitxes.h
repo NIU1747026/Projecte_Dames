@@ -32,14 +32,16 @@ public:
 	const TipusFitxa getTipus() const { return m_tipus; };
 	void changeTipus(TipusFitxa nouTipus) { m_tipus = nouTipus; };
 
-	void afegeixPosicionsValides(Posicio Valides[MAX_POSICIONS], int& nValides); // afegeix a l'array valides, les posicions valides de la fitxa, amb compte de no repetir-ne cap que ja estigui
-
 	void actualitzaMovimentsFitxa(Tauler tauler[N_FILES][N_COLUMNES], const Posicio& origen); // actualitza/refa llista de moviments vàlids de fitxa,
 
-	bool fesMoviment(Tauler tauler[N_FILES][N_COLUMNES], const Posicio& destí);
+	void afegeixPosicionsValides(Posicio Valides[MAX_POSICIONS], int& nValides); // afegeix a l'array valides, les posicions valides de la fitxa, amb compte de no repetir-ne cap que ja estigui
+
+	bool movimentEsValid(const Posicio& desti, Moviment& mov); //mira destins de la llista de moviments y retorna true si hi es i el posa a mov.
+	bool esMillorMoviment(Moviment& mov); //retorna true si no hi ha cap millor moviment
 private:
-	bool movimentEsValid(const Posicio& destí); //mira destins de la llista de moviments y retorna true si hi es.
-	
+	bool trobaMoviment(const Posicio& desti, Moviment& mov);
+
+	void getPosicionsValides(Tauler tauler[N_FILES][N_COLUMNES], const Posicio& origen, Posicio posicionsPendents[MAX_POSICIONS], int& nPendents);
 	//metode per afegir moviment a llista y mirar consecutius(?) // 
 	// Posició[MAX_POSICIONS] getPosicionsValides(const Posicio& origen int& nPosValides);
 	// afegeixMoviment(Moviment& nouMoviment);
