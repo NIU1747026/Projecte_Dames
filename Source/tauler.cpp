@@ -90,7 +90,7 @@ void Tauler::actualitzaMovimentsValids()
 		for (int columna = 0; columna < N_COLUMNES; columna++)
 		{
 			fitxa.setPos(fila, columna);
-			m_tauler[fila][columna].actualitzaMovimentsFitxa(m_tauler, fitxa.toString());
+			m_tauler[fila][columna].actualitzaMovimentsFitxa(m_tauler, fitxa);
 		}
 	}
 }
