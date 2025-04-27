@@ -26,4 +26,6 @@ private:
 	int m_fila, m_columna;
 };
 
+//ifstream operator>>
+
 #endif
