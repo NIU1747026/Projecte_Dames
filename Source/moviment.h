@@ -20,6 +20,7 @@ public:
 	};
 	int getFitxesMenjades() const { return m_nFitxesMenjades; };
 	int getDamesMenjades() const { return m_nDamesMenjades; };
+	int getnRecorregut() const { return m_nRecorregut; };
 	//retornar recorregut?
 
 	void afegeixPos(Posicio& pos) { m_recorregut[m_nRecorregut] = pos; m_nRecorregut++; };
