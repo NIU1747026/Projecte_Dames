@@ -67,38 +67,28 @@ void Fitxa::actualitzaMovimentsFitxa(Fitxa tauler[N_FILES][N_COLUMNES], const Po
 	} while (nMovPendents > 0);
 }
 
-//movimentsValids = []
-//movimentsPendents = []
-//movimentActual = []
-//afegir movimentActual a movimentsPendents
-//posicioActual = posicio de la Fitxa
-//do
-//{
-//	movimentActual = primer element de movimentsPendents
-//		posValides = PosicionsValides(posicioActual)
-//		while (posValides != [])
-//		{
-//			afegir a movimentActual la primera posicio valida
-//				per la resta de posicions valides
-//				movimentPendent = duplicaMoviment(movimentActual)
-//				afegir la posicio a movimentPendent
-//				afegir movimentPendent a movimentsPendents
-//				posicioActual = primera posicio valida
-//				posValides = PosicionsValides(posicioActual)
-//		}
-//	if (movimentActual != [])
-//		afegir movimentActual a movimentsValids
-//} while movimentsPendents != []
+bool dinsLimits(int fila, int columna)
+{
+	if (fila < 0 || columna < 0 || fila > N_FILES || columna > N_COLUMNES)
+		return false;
+	return true;
+}
 
-//movimentsValids = []
-//movimentActual = []
-//posicioActual = posicio de la fitxa
-//posValides = PosicionsValides(posicioActual)
-//while (posValides != [])
-//{
-//	afegir a movimentActual la posició vàlida
-//		posicioActual = última posició de movimentActual
-//		posValides = PosicionsValides(posicioActual)
-//}
-//if (movimentActual != [])
-//afegir movimentActual a movimentsValids
+void Fitxa::getPosicionsValides(Fitxa tauler[N_FILES][N_COLUMNES], const Posicio& origen, bool potmenjar, Posicio posicionsPossibles[MAX_POSICIONS], int& nPossibles, bool arrpotmenjar[MAX_POSICIONS])
+{
+	int col = origen.getColumna();
+	int fila = origen.getFila();
+	TipusFitxa tipus = tauler[fila][col].getTipus();
+	ColorFitxa color = tauler[fila][col].getColor();
+	nPossibles = 0;
+
+	if (tipus == TIPUS_EMPTY)
+		return;
+
+	if (color == COLOR_BLANC || tipus == TIPUS_DAMA)
+	{
+		Posicio possibles[2] = {{fila - 1, col - 1}, {fila - 1, col + 1}};
+		if (tauler[fila - 1][col - 1].getTipus() == TIPUS_EMPTY)
+			posicionsPossibles[nPossibles++] = { fila - 1, col - 1 }
+	}
+}
