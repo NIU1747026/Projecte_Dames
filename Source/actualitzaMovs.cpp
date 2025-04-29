@@ -89,36 +89,61 @@ void Fitxa::getPosicionsValides(Fitxa tauler[N_FILES][N_COLUMNES], const Posicio
 	{
 		if (dinsLimits(fila - 1, col - 1))
 			if (tauler[fila - 1][col - 1].getTipus() == TIPUS_EMPTY)
-				posicionsPossibles[nPossibles++] = { fila - 1, col - 1 };
-			else if (dinsLimits(fila - 2, col - 2))
+			{
+				posicionsPossibles[nPossibles] = { fila - 1, col - 1 };
+				arrpotmenjar[nPossibles++] = false;
+			}
+			else if (dinsLimits(fila - 2, col - 2) && potmenjar)
 				if (tauler[fila - 1][col - 1].getColor() == COLOR_NEGRE &&
 					tauler[fila - 2][col - 2].getTipus() == TIPUS_EMPTY)
+				{
 					posicionsPossibles[nPossibles++] = { fila - 2, col - 2 };
+					arrpotmenjar[nPossibles++] = true;
+				}
 
 		if (dinsLimits(fila - 1, col + 1))
 			if (tauler[fila - 1][col + 1].getTipus() == TIPUS_EMPTY)
+			{
 				posicionsPossibles[nPossibles++] = { fila - 1, col + 1 };
-			else if (dinsLimits(fila - 2, col + 2))
+				arrpotmenjar[nPossibles++] = false;
+			}
+
+			else if (dinsLimits(fila - 2, col + 2) && potmenjar)
 				if (tauler[fila - 1][col + 1].getColor() == COLOR_NEGRE &&
 					tauler[fila - 2][col + 2].getTipus() == TIPUS_EMPTY)
+				{
 					posicionsPossibles[nPossibles++] = { fila - 2, col + 2 };
+					arrpotmenjar[nPossibles++] = true;
+				}
 	}
 	if (color == COLOR_NEGRE)
 	{
 		if (dinsLimits(fila + 1, col - 1))
 			if (tauler[fila + 1][col - 1].getTipus() == TIPUS_EMPTY)
+			{
 				posicionsPossibles[nPossibles++] = { fila + 1, col - 1 };
+				arrpotmenjar[nPossibles++] = false;
+			}
 			else if (dinsLimits(fila + 2, col - 2))
 				if (tauler[fila + 1][col - 1].getColor() == COLOR_NEGRE &&
 					tauler[fila + 2][col - 2].getTipus() == TIPUS_EMPTY)
-					posicionsPossibles[nPossibles++] = { fila + 2, col - 2 };
+				{
+					posicionsPossibles[nPossibles++] = { fila + 1, col - 1 };
+					arrpotmenjar[nPossibles++] = true;
+				}
 
 		if (dinsLimits(fila + 1, col + 1))
 			if (tauler[fila + 1][col + 1].getTipus() == TIPUS_EMPTY)
+			{
 				posicionsPossibles[nPossibles++] = { fila + 1, col + 1 };
+				arrpotmenjar[nPossibles++] = true;
+			}
 			else if (dinsLimits(fila + 2, col + 2))
 				if (tauler[fila + 1][col + 1].getColor() == COLOR_NEGRE &&
 					tauler[fila + 2][col + 2].getTipus() == TIPUS_EMPTY)
+				{
 					posicionsPossibles[nPossibles++] = { fila + 2, col + 2 };
+					arrpotmenjar[nPossibles++] = true;
+				}
 	}
 }
