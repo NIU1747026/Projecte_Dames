@@ -3,18 +3,17 @@
 #include <fstream>
 using namespace std;
 
-bool Moviment::operator==(const Moviment& mov)
+bool Moviment::operator==(const Moviment& mov) const
 {
-	if (m_nDamesMenjades == mov.m_nDamesMenjades && m_nFitxesMenjades == mov.m_nFitxesMenjades && m_nRecorregut == mov.m_nRecorregut)
+	if (m_nDamesMenjades + m_nFitxesMenjades  == mov.m_nDamesMenjades + mov.m_nFitxesMenjades)
 	{
 		return true;
 	}
 	return false;
 }
-bool Moviment::operator>(const Moviment& mov)
+bool Moviment::operator>(const Moviment& mov) const
 {
-	if ((m_nDamesMenjades > mov.m_nDamesMenjades) || (m_nDamesMenjades == mov.m_nDamesMenjades && m_nFitxesMenjades > mov.m_nFitxesMenjades) || 
-		(m_nDamesMenjades == mov.m_nDamesMenjades && m_nFitxesMenjades == mov.m_nFitxesMenjades && m_nRecorregut > mov.m_nRecorregut))
+	if (m_nDamesMenjades + m_nFitxesMenjades > mov.m_nDamesMenjades + mov.m_nFitxesMenjades)
 	{
 		return true;
 	}

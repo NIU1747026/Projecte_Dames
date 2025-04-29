@@ -19,8 +19,7 @@ public:
 	int getColumna() const { return m_columna; };
 
 	string toString() const { char x = 7 - m_fila + '1'; char y = m_columna + 'a'; return { y,x }; };
-
-	bool operator==(Posicio& posicio) { return (m_fila == posicio.m_fila && m_columna == posicio.m_columna); };
+	bool operator==(const Posicio& posicio) const { return (m_fila == posicio.m_fila && m_columna == posicio.m_columna); };
 
 private:
 	int m_fila, m_columna;
