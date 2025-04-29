@@ -24,7 +24,7 @@ public:
 	//retornar recorregut?
 
 	void afegeixPos(Posicio& pos) { m_recorregut[m_nRecorregut] = pos; m_nRecorregut++; };
-	bool operator==(const Moviment& mov);
+	bool operator==(const Moviment& mov); //devuelve true si mov es el mismo
 	bool operator>(const Moviment& mov); //retorna true si el primer moviment es millor que l'altre
 
 	int recuperaFitxesMenjades(const Posicio& mov, Posicio menjades[MAX_POSICIONS]); // Posa a menjades la posicio de les fitxes menjades en el moviment. (Si dos moviments acaben a mateix desti?????)
