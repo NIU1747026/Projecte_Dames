@@ -85,10 +85,40 @@ void Fitxa::getPosicionsValides(Fitxa tauler[N_FILES][N_COLUMNES], const Posicio
 	if (tipus == TIPUS_EMPTY)
 		return;
 
-	if (color == COLOR_BLANC || tipus == TIPUS_DAMA)
+	if (color == COLOR_BLANC)
 	{
-		Posicio possibles[2] = {{fila - 1, col - 1}, {fila - 1, col + 1}};
-		if (tauler[fila - 1][col - 1].getTipus() == TIPUS_EMPTY)
-			posicionsPossibles[nPossibles++] = { fila - 1, col - 1 }
+		if (dinsLimits(fila - 1, col - 1))
+			if (tauler[fila - 1][col - 1].getTipus() == TIPUS_EMPTY)
+				posicionsPossibles[nPossibles++] = { fila - 1, col - 1 };
+			else if (dinsLimits(fila - 2, col - 2))
+				if (tauler[fila - 1][col - 1].getColor() == COLOR_NEGRE &&
+					tauler[fila - 2][col - 2].getTipus() == TIPUS_EMPTY)
+					posicionsPossibles[nPossibles++] = { fila - 2, col - 2 };
+
+		if (dinsLimits(fila - 1, col + 1))
+			if (tauler[fila - 1][col + 1].getTipus() == TIPUS_EMPTY)
+				posicionsPossibles[nPossibles++] = { fila - 1, col + 1 };
+			else if (dinsLimits(fila - 2, col + 2))
+				if (tauler[fila - 1][col + 1].getColor() == COLOR_NEGRE &&
+					tauler[fila - 2][col + 2].getTipus() == TIPUS_EMPTY)
+					posicionsPossibles[nPossibles++] = { fila - 2, col + 2 };
+	}
+	if (color == COLOR_NEGRE)
+	{
+		if (dinsLimits(fila + 1, col - 1))
+			if (tauler[fila + 1][col - 1].getTipus() == TIPUS_EMPTY)
+				posicionsPossibles[nPossibles++] = { fila + 1, col - 1 };
+			else if (dinsLimits(fila + 2, col - 2))
+				if (tauler[fila + 1][col - 1].getColor() == COLOR_NEGRE &&
+					tauler[fila + 2][col - 2].getTipus() == TIPUS_EMPTY)
+					posicionsPossibles[nPossibles++] = { fila + 2, col - 2 };
+
+		if (dinsLimits(fila + 1, col + 1))
+			if (tauler[fila + 1][col + 1].getTipus() == TIPUS_EMPTY)
+				posicionsPossibles[nPossibles++] = { fila + 1, col + 1 };
+			else if (dinsLimits(fila + 2, col + 2))
+				if (tauler[fila + 1][col + 1].getColor() == COLOR_NEGRE &&
+					tauler[fila + 2][col + 2].getTipus() == TIPUS_EMPTY)
+					posicionsPossibles[nPossibles++] = { fila + 2, col + 2 };
 	}
 }
