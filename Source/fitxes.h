@@ -1,5 +1,5 @@
 #ifndef FITXES_H
-#define FITXES_H
+	#define FITXES_H
 
 using namespace std;
 

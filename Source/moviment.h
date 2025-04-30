@@ -1,5 +1,5 @@
 #ifndef MOVIMENT_H_
-#define MOVIMENT_H_
+	#define MOVIMENT_H_
 
 const int MAX_RECORREGUT = 20;
 const int MAX_POSICIONS = 65;
@@ -14,10 +14,10 @@ public:
 	Moviment() : m_nRecorregut(0), m_nFitxesMenjades(0), m_nDamesMenjades(0) {};
 	void inicialitza() { m_nRecorregut = 0; m_nFitxesMenjades = 0; m_nDamesMenjades = 0; };
 
-	const Posicio getPosFinal() const {
+	const Posicio getPosFinal() const { 
 		if (m_nRecorregut > 0)
 			return m_recorregut[m_nRecorregut - 1];
-		return { -1,-1 };
+		return {-1,-1};
 	};
 	int getFitxesMenjades() const { return m_nFitxesMenjades; };
 	int getDamesMenjades() const { return m_nDamesMenjades; };

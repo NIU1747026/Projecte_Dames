@@ -1,4 +1,5 @@
 #include "fitxes.h"
+#include "tauler.hpp"
 
 void Fitxa::actualitzaMovimentsFitxa(Fitxa tauler[N_FILES][N_COLUMNES], const Posicio& origen)
 {
@@ -76,9 +77,13 @@ void Fitxa::getPosicionsValides(Fitxa tauler[N_FILES][N_COLUMNES], const Posicio
 {
 	int col = origen.getColumna();
 	int fila = origen.getFila();
+	nPossibles = 0;
+
+	if (!dinsLimits(col, fila))
+		return;
+
 	TipusFitxa tipus = tauler[fila][col].getTipus();
 	ColorFitxa color = tauler[fila][col].getColor();
-	nPossibles = 0;
 
 	if (tipus == TIPUS_EMPTY)
 		return;

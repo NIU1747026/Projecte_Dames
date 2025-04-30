@@ -1,5 +1,5 @@
 #ifndef TAULER_H_
-#define TAULER_H_
+	#define TAULER_H_
 
 #include "posicio.hpp"
 #include "moviment.h"
