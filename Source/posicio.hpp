@@ -1,5 +1,5 @@
 #ifndef POSICIO_H_
-	#define POSICIO_H_
+#define POSICIO_H_
 
 #include <string>
 #include <fstream>

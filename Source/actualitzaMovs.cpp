@@ -52,9 +52,7 @@ void Fitxa::actualitzaMovimentsFitxa(Fitxa tauler[N_FILES][N_COLUMNES], const Po
 				movimentsPendents[nMovPendents] = movimentPendent;
 				arrMOVpotmenjar[nMovPendents] = arrPOSpotmenjar[i];
 				nMovPendents++;
-				insertaPos(posicionsValides[i]);//
 			}
-			insertaPos(posicionsValides[0]);//
 			movimentActual.afegeixPos(posicionsValides[0]);
 			potmenjar = arrPOSpotmenjar[0];
 			posicioActual = posicionsValides[0];

@@ -1,7 +1,16 @@
-#include "tauler.h"	
+#include "tauler.hpp"	
 #include <iostream>
 #include <fstream>
+
 using namespace std;
+
+Tauler::Tauler()
+{
+	for (int i = 0; i < N_FILES; i++)
+		for (int j = 0; j < N_COLUMNES; j++)
+			m_tauler[i][j].inicialitza(COLOR_NEGRE, TIPUS_EMPTY);
+}
+
 void Tauler::inicialitza(const string& nomFitxer)
 {
 	ifstream fitxer;
@@ -38,6 +47,7 @@ void Tauler::inicialitza(const string& nomFitxer)
 	}
 	fitxer.close();
 }
+
 void escriureFitxes(const Fitxa tauler[N_FILES][N_COLUMNES], int fila, int columna, string& res)
 {
 	switch (tauler[fila][columna].getTipus())
@@ -69,6 +79,7 @@ void escriureFitxes(const Fitxa tauler[N_FILES][N_COLUMNES], int fila, int colum
 		break;
 	}
 }
+
 string Tauler::toString() const
 {
 	string res = "";
@@ -82,6 +93,7 @@ string Tauler::toString() const
 	}
 	return res;
 }
+
 void Tauler::actualitzaMovimentsValids()
 {
 	Posicio fitxa;
@@ -94,6 +106,7 @@ void Tauler::actualitzaMovimentsValids()
 		}
 	}
 }
+
 void Tauler::inicialitza() //inicialitzar partida desde zero
 {
 	for (int fila = 0; fila < N_FILES; fila++)
@@ -114,6 +127,7 @@ void Tauler::inicialitza() //inicialitzar partida desde zero
 		}
 	}
 }
+
 void Tauler::getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posicio posicionsPossibles[])
 {
 	nPosicions = 0;
