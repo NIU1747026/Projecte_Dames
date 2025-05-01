@@ -38,11 +38,12 @@ void Fitxa::actualitzaMovimentsFitxa(Fitxa tauler[N_FILES][N_COLUMNES], const Po
 			}
 			movimentActual.afegeixPos(posicionsValides[0]);
 			potmenjar = arrPOSpotmenjar[0];
-			posicioActual = posicionsValides[0];//insertapos
+			posicioActual = posicionsValides[0];
 			insertaPos(posicioActual);
 			getPosicionsValides(tauler, posicioActual, fitxa, potmenjar, posicionsValides, nPosValides, arrPOSpotmenjar);
 		}
 		if (movimentActual.getnRecorregut() > 0) {
+			movimentActual.evaluaMoviment(tauler);//
 			m_movimentValids[m_nMovimentsValids] = movimentActual;
 			m_nMovimentsValids++;
 		}

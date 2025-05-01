@@ -23,6 +23,9 @@ public:
 	int getDamesMenjades() const { return m_nDamesMenjades; };
 	int getnRecorregut() const { return m_nRecorregut; };
 
+	void evaluaMoviment(Fitxa tauler[N_FILES][N_COLUMNES]); //Observa el recorregut del moviment i, si hi ha un salt (ex: a1 -> c3) vol dir que a l'espai del mitg s'ha menjat una peça, aquesta posicio s'afegeix a l'array menjades i s'incrementa nFitxesMenjades(SEMPRE) i nDames nomes si es una dama
+	void menja(Fitxa tauler[N_FILES][N_COLUMNES]); //Recorre menjades i posa a TIPUS_EMPTY (es menja) les fitxes del tauler
+
 	void afegeixPos(Posicio& pos) { m_recorregut[m_nRecorregut] = pos; m_nRecorregut++; };
 	bool operator==(const Moviment& mov) const; //devuelve true si mov es el mismo
 	bool operator>(const Moviment& mov) const; //retorna true si el primer moviment es millor que l'altre
@@ -34,6 +37,9 @@ private:
 
 	int m_nRecorregut;
 	Posicio m_recorregut[MAX_RECORREGUT];
+
+	int m_nMenjades;
+	Posicio m_menjades[MAX_POSICIONS];
 };
 
 #endif
