@@ -3,6 +3,7 @@
 
 #include <string>
 #include <fstream>
+#include <sstream>
 
 using namespace std;
 
@@ -25,6 +26,6 @@ private:
 	int m_fila, m_columna;
 };
 
-//ifstream operator>>
+stringstream& operator<<(stringstream& fitxer, Posicio& pos);
 
 #endif

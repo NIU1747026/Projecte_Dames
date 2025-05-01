@@ -1,6 +1,7 @@
 #include "fitxes.h"	
 #include <iostream>
 #include <fstream>
+
 bool comprovarRepeticio(const Posicio array[], const int& nPosicionsArray, const Posicio& pos)
 {
 	for (int i = 0; i < nPosicionsArray; i++) 
@@ -12,6 +13,7 @@ bool comprovarRepeticio(const Posicio array[], const int& nPosicionsArray, const
 	}
 	return true;
 }
+
 void Fitxa::afegeixPosicionsValides(Posicio Valides[MAX_POSICIONS], int& nValides) const
 {
 	for (int i = 0; i < m_nPosicionsValides; i++)
@@ -23,6 +25,7 @@ void Fitxa::afegeixPosicionsValides(Posicio Valides[MAX_POSICIONS], int& nValide
 	}
 }
 // afegeix a l'array valides, les posicions valides de la fitxa, amb compte de no repetir-ne cap que ja estigui
+
 const bool Fitxa::movimentEsValid(const Posicio& desti, Moviment& mov) const 
 {
 	for (int i = 0; i < m_nMovimentsValids; i++)
@@ -45,3 +48,9 @@ const bool Fitxa::esMillorMoviment(const Moviment& mov) const
 	}
 	return true;
 }//retorna true si no hi ha cap millor moviment
+
+void Fitxa::insertaPos(const Posicio& pos)
+{
+	if (comprovarRepeticio(m_posicionsValides, m_nPosicionsValides, pos))
+		m_posicionsValides[m_nPosicionsValides++] = pos;
+}

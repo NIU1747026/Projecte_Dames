@@ -1,11 +1,12 @@
 #ifndef MOVIMENT_H_
 	#define MOVIMENT_H_
 
-using namespace std;
-
-#include "posicio.h"
-
 const int MAX_RECORREGUT = 20;
+const int MAX_POSICIONS = 65;
+
+#include "posicio.hpp"
+
+using namespace std;
 
 class Moviment
 {
@@ -21,13 +22,14 @@ public:
 	int getFitxesMenjades() const { return m_nFitxesMenjades; };
 	int getDamesMenjades() const { return m_nDamesMenjades; };
 	int getnRecorregut() const { return m_nRecorregut; };
-	//retornar recorregut?
+
+	void evaluaMoviment(Fitxa tauler[N_FILES][N_COLUMNES]); //Observa el recorregut del moviment i, si hi ha un salt (ex: a1 -> c3) vol dir que a l'espai del mitg s'ha menjat una peça, aquesta posicio s'afegeix a l'array menjades i s'incrementa nFitxesMenjades(SEMPRE) i nDames nomes si es una dama
+	void menja(Fitxa tauler[N_FILES][N_COLUMNES]); //Recorre menjades i posa a TIPUS_EMPTY (es menja) les fitxes del tauler
 
 	void afegeixPos(Posicio& pos) { m_recorregut[m_nRecorregut] = pos; m_nRecorregut++; };
 	bool operator==(const Moviment& mov) const; //devuelve true si mov es el mismo
 	bool operator>(const Moviment& mov) const; //retorna true si el primer moviment es millor que l'altre
 
-	int recuperaFitxesMenjades(const Posicio& mov, Posicio menjades[MAX_POSICIONS]); // Posa a menjades la posicio de les fitxes menjades en el moviment. (Si dos moviments acaben a mateix desti?????)
 private:
 	//Posicio m_posFinal = recorregut[m_nRecorregut];
 	int m_nFitxesMenjades;
@@ -35,6 +37,9 @@ private:
 
 	int m_nRecorregut;
 	Posicio m_recorregut[MAX_RECORREGUT];
+
+	int m_nMenjades;
+	Posicio m_menjades[MAX_POSICIONS];
 };
 
 #endif
