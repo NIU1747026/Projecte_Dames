@@ -22,13 +22,11 @@ public:
 	int getFitxesMenjades() const { return m_nFitxesMenjades; };
 	int getDamesMenjades() const { return m_nDamesMenjades; };
 	int getnRecorregut() const { return m_nRecorregut; };
-	//retornar recorregut?
 
 	void afegeixPos(Posicio& pos) { m_recorregut[m_nRecorregut] = pos; m_nRecorregut++; };
 	bool operator==(const Moviment& mov) const; //devuelve true si mov es el mismo
 	bool operator>(const Moviment& mov) const; //retorna true si el primer moviment es millor que l'altre
 
-	int recuperaFitxesMenjades(const Posicio& mov, Posicio menjades[MAX_POSICIONS]) { return 0; }; // Posa a menjades la posicio de les fitxes menjades en el moviment. (Si dos moviments acaben a mateix desti?????)
 private:
 	//Posicio m_posFinal = recorregut[m_nRecorregut];
 	int m_nFitxesMenjades;

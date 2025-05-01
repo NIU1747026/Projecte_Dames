@@ -11,6 +11,11 @@ Tauler::Tauler()
 			m_tauler[i][j].inicialitza(COLOR_NEGRE, TIPUS_EMPTY);
 }
 
+stringstream& operator<<(stringstream& fitxer, Posicio& pos)
+{
+	fitxer << pos.toString(); return fitxer;
+}
+
 void Tauler::inicialitza(const string& nomFitxer)
 {
 	ifstream fitxer;
