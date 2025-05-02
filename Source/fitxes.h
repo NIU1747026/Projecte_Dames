@@ -15,26 +15,38 @@ typedef enum
 typedef enum
 {
 	COLOR_NEGRE,
-	COLOR_BLANC,
+	COLOR_BLANC
 } ColorFitxa;
 
 #include "moviment.h"
 
+typedef enum
+{
+	TOT,
+	DALT_ESQUERRA,
+	DALT_DRETA,
+	BAIX_ESQUERRA,
+	BAIX_DRETA
+}DireccioMov;
+
 class FStatus
 {
 public:
-	FStatus() : potMenjar(false), potMoure(false) {};
-	void init(bool potmenjar, bool potmoure) { setPotMenjar(potmenjar); setPotMoure(potmoure); }
+	FStatus() : potMenjar(false), potMoure(false), direccio(TOT) {};
+	void init(bool potmenjar, bool potmoure, DireccioMov dir) { setPotMenjar(potmenjar); setPotMoure(potmoure); setDireccio(dir); }
 
 	bool getPotMenjar() { return potMenjar; }
 	bool getPotMoure() { return potMoure; }
+	DireccioMov getDireccio() { return direccio; }
 
 	void setPotMenjar(bool pot) { potMenjar = pot; }
 	void setPotMoure(bool pot) { potMoure = pot; }
+	void setDireccio(DireccioMov dir) { direccio = dir; }
 
 private:
 	bool potMenjar;
 	bool potMoure;
+	DireccioMov direccio;
 };
 
 class Fitxa
@@ -56,7 +68,7 @@ public:
 	void calculaMenjades(Fitxa tauler[N_FILES][N_COLUMNES]);
 private:
 	void insertaPos(const Posicio& pos); // inserta la pos a posicions valides, sempre que no estigui ja posada
-	void getPosicionsValides(Fitxa tauler[N_FILES][N_COLUMNES], const Posicio& origen, const Fitxa& fitxa, FStatus& status, Posicio posicionsPossibles[MAX_POSICIONS], int& nPossibles, FStatus arrStatus[MAX_POSICIONS]); //Donats una posicio d'origen i si pot menjar, retorna a l'array les posicions a les que pot anar junt amb un array on a la posició corresponent a la de la posicio possible diu si pot seguir menjant o no. npossibles s'inicialitza a 0.
+	void getPosicionsValides(Fitxa tauler[N_FILES][N_COLUMNES], const Posicio& origen, const Fitxa& fitxa, FStatus& status, Posicio posicionsPossibles[MAX_POSICIONS], int& nPossibles, FStatus arrStatus[MAX_POSICIONS], Posicio menjada[MAX_POSICIONS], Moviment& movimentActual); //Donats una posicio d'origen i si pot menjar, retorna a l'array les posicions a les que pot anar junt amb un array on a la posició corresponent a la de la posicio possible diu si pot seguir menjant o no. npossibles s'inicialitza a 0.
 
 	ColorFitxa m_color;
 	TipusFitxa m_tipus;

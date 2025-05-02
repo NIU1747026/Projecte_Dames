@@ -11,10 +11,11 @@ void Fitxa::actualitzaMovimentsFitxa(Fitxa tauler[N_FILES][N_COLUMNES], const Po
 	Posicio posicionsValides[MAX_POSICIONS];
 	int nPosValides = 0;
 	
+	Posicio menjadas[MAX_POSICIONS];
+	Posicio nein;
 	FStatus arrPOSpotmenjar[MAX_POSICIONS];
 	FStatus arrMOVpotmenjar[MAX_MOVIMENTS];
-	arrMOVpotmenjar[0].init(true, true);
-
+	arrMOVpotmenjar[0].init(true, true, TOT);
 	
 	Posicio posicioActual = origen;
 	Fitxa fitxa = tauler[origen.getFila()][origen.getColumna()];
@@ -25,7 +26,7 @@ void Fitxa::actualitzaMovimentsFitxa(Fitxa tauler[N_FILES][N_COLUMNES], const Po
 		potmenjar = arrMOVpotmenjar[nMovPendents];
 		if (movimentActual.getnRecorregut() != 0)
 			posicioActual = movimentActual.getPosFinal();
-		getPosicionsValides(tauler, posicioActual, fitxa, potmenjar, posicionsValides, nPosValides, arrPOSpotmenjar);
+		getPosicionsValides(tauler, posicioActual, fitxa, potmenjar, posicionsValides, nPosValides, arrPOSpotmenjar, menjadas, movimentActual);
 		while (nPosValides > 0)
 		{
 			for (int i = 1; i < nPosValides; i++)
@@ -33,17 +34,20 @@ void Fitxa::actualitzaMovimentsFitxa(Fitxa tauler[N_FILES][N_COLUMNES], const Po
 				insertaPos(posicionsValides[i]);
 				movimentPendent = movimentActual;
 				movimentPendent.afegeixPos(posicionsValides[i]);
+				if (!(menjadas[i] == nein))
+					movimentPendent.afegeixMenjada(menjadas[i]);
 				movimentsPendents[nMovPendents] = movimentPendent;
 				arrMOVpotmenjar[nMovPendents++] = arrPOSpotmenjar[i];
 			}
 			movimentActual.afegeixPos(posicionsValides[0]);
+			if (!(menjadas[0] == nein))
+				movimentActual.afegeixMenjada(menjadas[0]);
 			potmenjar = arrPOSpotmenjar[0];
 			posicioActual = posicionsValides[0];
 			insertaPos(posicioActual);
-			getPosicionsValides(tauler, posicioActual, fitxa, potmenjar, posicionsValides, nPosValides, arrPOSpotmenjar);
+			getPosicionsValides(tauler, posicioActual, fitxa, potmenjar, posicionsValides, nPosValides, arrPOSpotmenjar, menjadas, movimentActual);
 		}
 		if (movimentActual.getnRecorregut() > 0) {
-			movimentActual.evaluaMoviment(tauler);//
 			m_movimentValids[m_nMovimentsValids] = movimentActual;
 			m_nMovimentsValids++;
 		}
@@ -57,7 +61,7 @@ bool dinsLimits(int fila, int columna)
 	return true;
 }
 
-void Fitxa::getPosicionsValides(Fitxa tauler[N_FILES][N_COLUMNES], const Posicio& origen, const Fitxa& fitxa, FStatus& status, Posicio posicionsPossibles[MAX_POSICIONS], int& nPossibles, FStatus arrStatus[MAX_POSICIONS])
+void Fitxa::getPosicionsValides(Fitxa tauler[N_FILES][N_COLUMNES], const Posicio& origen, const Fitxa& fitxa, FStatus& status, Posicio posicionsPossibles[MAX_POSICIONS], int& nPossibles, FStatus arrStatus[MAX_POSICIONS], Posicio menjada[MAX_POSICIONS], Moviment &movimentActual)
 {
 	int col = origen.getColumna();
 	int fila = origen.getFila();
@@ -65,69 +69,96 @@ void Fitxa::getPosicionsValides(Fitxa tauler[N_FILES][N_COLUMNES], const Posicio
 	ColorFitxa color = fitxa.getColor();
 	bool potmenjar = status.getPotMenjar();
 	bool potmoure = status.getPotMoure();
+	DireccioMov dir = status.getDireccio();
 	nPossibles = 0;
+
+	Posicio check;
 
 	if (tipus == TIPUS_EMPTY || !potmenjar || !dinsLimits(col, fila))
 		return;
 
-	if (color == COLOR_BLANC)
+	if (color == COLOR_BLANC || tipus == TIPUS_DAMA)
 	{
-		if (dinsLimits(fila - 1, col - 1))
+		check.setPos(fila - 1, col - 1);
+		if (dinsLimits(fila - 1, col - 1) && (dir == TOT || dir == DALT_ESQUERRA))
 			if (tauler[fila - 1][col - 1].getTipus() == TIPUS_EMPTY && potmoure)
 			{
 				posicionsPossibles[nPossibles] = { fila - 1, col - 1 };
-				arrStatus[nPossibles++].init(false, false);
+				if (tipus == TIPUS_DAMA)
+					arrStatus[nPossibles++].init(true, true, DALT_ESQUERRA);
+				else
+					arrStatus[nPossibles++].init(false, false, DALT_ESQUERRA);
 			}
 			else if (dinsLimits(fila - 2, col - 2))
-				if (tauler[fila - 1][col - 1].getColor() == COLOR_NEGRE &&
-					tauler[fila - 2][col - 2].getTipus() == TIPUS_EMPTY)
+				if (tauler[fila - 1][col - 1].getColor() == !color &&
+					tauler[fila - 2][col - 2].getTipus() == TIPUS_EMPTY &&
+					!movimentActual.esMenjada(check))
 				{
 					posicionsPossibles[nPossibles] = { fila - 2, col - 2 };
-					arrStatus[nPossibles++].init(true, false);
+					menjada[nPossibles] = { fila - 1, col - 1 };
+					arrStatus[nPossibles++].init(true, false, TOT);
 				}
 
-		if (dinsLimits(fila - 1, col + 1))
+		check.setPos(fila - 1, col + 1);
+		if (dinsLimits(fila - 1, col + 1) && (dir == TOT || dir == DALT_DRETA))
 			if (tauler[fila - 1][col + 1].getTipus() == TIPUS_EMPTY && potmoure)
 			{
 				posicionsPossibles[nPossibles] = { fila - 1, col + 1 };
-				arrStatus[nPossibles++].init(false, false);
+				if (tipus == TIPUS_DAMA)
+					arrStatus[nPossibles++].init(true, true, DALT_DRETA);
+				else
+					arrStatus[nPossibles++].init(false, false, DALT_DRETA);
 			}
 			else if (dinsLimits(fila - 2, col + 2))
-				if (tauler[fila - 1][col + 1].getColor() == COLOR_NEGRE &&
-					tauler[fila - 2][col + 2].getTipus() == TIPUS_EMPTY)
+				if (tauler[fila - 1][col + 1].getColor() == !color &&
+					tauler[fila - 2][col + 2].getTipus() == TIPUS_EMPTY &&
+					!movimentActual.esMenjada(check))
 				{
 					posicionsPossibles[nPossibles] = { fila - 2, col + 2 };
-					arrStatus[nPossibles++].init(true, false);
+					menjada[nPossibles] = { fila - 1, col + 1 };
+					arrStatus[nPossibles++].init(true, false, TOT);
 				}
 	}
-	if (color == COLOR_NEGRE)
+	if (color == COLOR_NEGRE || tipus == TIPUS_DAMA)
 	{
-		if (dinsLimits(fila + 1, col - 1))
+		check.setPos(fila + 1, col - 1);
+		if (dinsLimits(fila + 1, col - 1) && (dir == TOT || dir == BAIX_ESQUERRA))
 			if (tauler[fila + 1][col - 1].getTipus() == TIPUS_EMPTY && potmoure)
 			{
 				posicionsPossibles[nPossibles] = { fila + 1, col - 1 };
-				arrStatus[nPossibles++].init(false, false);
+				if (tipus == TIPUS_DAMA)
+					arrStatus[nPossibles++].init(true, true, BAIX_ESQUERRA);
+				else
+					arrStatus[nPossibles++].init(false, false, BAIX_ESQUERRA);
 			}
 			else if (dinsLimits(fila + 2, col - 2))
-				if (tauler[fila + 1][col - 1].getColor() == COLOR_BLANC &&
-					tauler[fila + 2][col - 2].getTipus() == TIPUS_EMPTY)
+				if (tauler[fila + 1][col - 1].getColor() == !color &&
+					tauler[fila + 2][col - 2].getTipus() == TIPUS_EMPTY &&
+					!movimentActual.esMenjada(check))
 				{
 					posicionsPossibles[nPossibles] = { fila + 2, col - 2 };
-					arrStatus[nPossibles++].init(true, false);
+					menjada[nPossibles] = { fila + 1, col - 1 };
+					arrStatus[nPossibles++].init(true, false, TOT);
 				}
 
-		if (dinsLimits(fila + 1, col + 1))
+		check.setPos(fila + 1, col + 1);
+		if (dinsLimits(fila + 1, col + 1) && (dir == TOT || dir == BAIX_DRETA))
 			if (tauler[fila + 1][col + 1].getTipus() == TIPUS_EMPTY && potmoure)
 			{
 				posicionsPossibles[nPossibles] = { fila + 1, col + 1 };
-				arrStatus[nPossibles++].init(false, false);
+				if (tipus == TIPUS_DAMA)
+					arrStatus[nPossibles++].init(true, true, BAIX_DRETA);
+				else
+					arrStatus[nPossibles++].init(false, false, BAIX_DRETA);
 			}
 			else if (dinsLimits(fila + 2, col + 2))
-				if (tauler[fila + 1][col + 1].getColor() == COLOR_BLANC &&
-					tauler[fila + 2][col + 2].getTipus() == TIPUS_EMPTY)
+				if (tauler[fila + 1][col + 1].getColor() == !color &&
+					tauler[fila + 2][col + 2].getTipus() == TIPUS_EMPTY &&
+					!movimentActual.esMenjada(check))
 				{
 					posicionsPossibles[nPossibles] = { fila + 2, col + 2 };
-					arrStatus[nPossibles++].init(true, false);
+					menjada[nPossibles] = { fila + 1, col + 1 };
+					arrStatus[nPossibles++].init(true, false, TOT);
 				}
 	}
 }
