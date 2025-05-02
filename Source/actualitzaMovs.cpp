@@ -27,6 +27,11 @@ void Fitxa::actualitzaMovimentsFitxa(Fitxa tauler[N_FILES][N_COLUMNES], const Po
 		if (movimentActual.getnRecorregut() != 0)
 			posicioActual = movimentActual.getPosFinal();
 		getPosicionsValides(tauler, posicioActual, fitxa, potmenjar, posicionsValides, nPosValides, arrPOSpotmenjar, menjadas, movimentActual);
+		if (movimentActual.getnRecorregut() > 0) {
+			m_movimentValids[m_nMovimentsValids] = movimentActual;
+			m_movimentValids[m_nMovimentsValids].evaluaMoviment(tauler, origen);
+			m_nMovimentsValids++;
+		}
 		while (nPosValides > 0)
 		{
 			for (int i = 1; i < nPosValides; i++)
