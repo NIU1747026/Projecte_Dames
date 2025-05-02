@@ -91,7 +91,7 @@ void Fitxa::getPosicionsValides(Fitxa tauler[N_FILES][N_COLUMNES], const Posicio
 					arrStatus[nPossibles++].init(false, false, DALT_ESQUERRA);
 			}
 			else if (dinsLimits(fila - 2, col - 2))
-				if (tauler[fila - 1][col - 1].getColor() == !color &&
+				if (tauler[fila - 1][col - 1].getColor() == !color && tauler[fila - 1][col - 1].getTipus() != TIPUS_EMPTY &&
 					tauler[fila - 2][col - 2].getTipus() == TIPUS_EMPTY &&
 					!movimentActual.esMenjada(check))
 				{
@@ -111,7 +111,7 @@ void Fitxa::getPosicionsValides(Fitxa tauler[N_FILES][N_COLUMNES], const Posicio
 					arrStatus[nPossibles++].init(false, false, DALT_DRETA);
 			}
 			else if (dinsLimits(fila - 2, col + 2))
-				if (tauler[fila - 1][col + 1].getColor() == !color &&
+				if (tauler[fila - 1][col + 1].getColor() == !color && tauler[fila - 1][col + 1].getTipus() != TIPUS_EMPTY &&
 					tauler[fila - 2][col + 2].getTipus() == TIPUS_EMPTY &&
 					!movimentActual.esMenjada(check))
 				{
@@ -133,7 +133,7 @@ void Fitxa::getPosicionsValides(Fitxa tauler[N_FILES][N_COLUMNES], const Posicio
 					arrStatus[nPossibles++].init(false, false, BAIX_ESQUERRA);
 			}
 			else if (dinsLimits(fila + 2, col - 2))
-				if (tauler[fila + 1][col - 1].getColor() == !color &&
+				if (tauler[fila + 1][col - 1].getColor() == !color && tauler[fila + 1][col - 1].getTipus() != TIPUS_EMPTY &&
 					tauler[fila + 2][col - 2].getTipus() == TIPUS_EMPTY &&
 					!movimentActual.esMenjada(check))
 				{
@@ -153,7 +153,7 @@ void Fitxa::getPosicionsValides(Fitxa tauler[N_FILES][N_COLUMNES], const Posicio
 					arrStatus[nPossibles++].init(false, false, BAIX_DRETA);
 			}
 			else if (dinsLimits(fila + 2, col + 2))
-				if (tauler[fila + 1][col + 1].getColor() == !color &&
+				if (tauler[fila + 1][col + 1].getColor() == !color && tauler[fila + 1][col + 1].getTipus() != TIPUS_EMPTY &&
 					tauler[fila + 2][col + 2].getTipus() == TIPUS_EMPTY &&
 					!movimentActual.esMenjada(check))
 				{
