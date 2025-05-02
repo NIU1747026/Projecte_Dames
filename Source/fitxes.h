@@ -3,7 +3,7 @@
 
 using namespace std;
 
-const int MAX_MOVIMENTS = 50;
+const int MAX_MOVIMENTS = 20;
 
 typedef enum
 {

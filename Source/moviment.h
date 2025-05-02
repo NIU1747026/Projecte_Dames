@@ -1,8 +1,8 @@
 #ifndef MOVIMENT_H_
 	#define MOVIMENT_H_
 
-const int MAX_RECORREGUT = 20;
-const int MAX_POSICIONS = 65;
+const int MAX_RECORREGUT = 10;
+const int MAX_POSICIONS = 20;
 
 const int N_FILES = 8;
 const int N_COLUMNES = 8;

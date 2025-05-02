@@ -111,6 +111,8 @@ bool comprovaTauler(char taulerEsperat[N_FILES_TAULER][N_COLUMNES_TAULER], strin
         }
         fila++;
     }
+    if ((iguals) && (fila != N_FILES_TAULER))
+        iguals = false;
     return iguals;
 }
 
