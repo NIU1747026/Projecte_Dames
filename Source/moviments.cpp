@@ -23,6 +23,9 @@ bool Moviment::operator>(const Moviment& mov) const
 }
 void Moviment::evaluaMoviment(Fitxa tauler[N_FILES][N_COLUMNES], const Posicio& origen)
 {
+	m_nMenjades = 0;
+	m_nFitxesMenjades = 0;
+	m_nDamesMenjades = 0;
 	int df, dc, fila, colmna;
 	for (int i = 0; i < m_nRecorregut; i++)
 	{
