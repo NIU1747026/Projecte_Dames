@@ -88,13 +88,27 @@ void escriureFitxes(const Fitxa tauler[N_FILES][N_COLUMNES], int fila, int colum
 string Tauler::toString() const
 {
 	string res = "";
-	for (int files = 0; files < N_FILES; files++)
+	string x;
+	for (int files = 0; files <= N_FILES; files++)
 	{
-		for (int columna = 0; columna < N_COLUMNES; columna++)
+		if (files < N_FILES)
 		{
-			escriureFitxes(m_tauler, files, columna, res); 
+			x = 7 - files + '1';
+			res.append(x);
+			res.append(": ");
 		}
-		res.append("\n");
+		else
+			res.append("   ");
+		if (files < N_FILES)
+		{
+			for (int columna = 0; columna < N_COLUMNES; columna++)
+			{
+				escriureFitxes(m_tauler, files, columna, res);
+			}
+			res.append("\n");
+		}
+		else
+			res.append("a " "b " "c " "d " "e " "f " "g " "h ");
 	}
 	return res;
 }
