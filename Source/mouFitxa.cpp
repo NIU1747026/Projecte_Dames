@@ -12,7 +12,7 @@ bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti)
 	{
 		Fitxa f;
 		Posicio millorMov;
-		mov.evaluaMoviment(m_tauler);
+		mov.evaluaMoviment(m_tauler,origen);
 		mov.menja(m_tauler);
 		//m_tauler[origen.getFila()][origen.getColumna()].calculaMenjades(m_tauler); 
 		//mirar si altre fitxa tenia millor moviment

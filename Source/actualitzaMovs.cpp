@@ -43,7 +43,7 @@ void Fitxa::actualitzaMovimentsFitxa(Fitxa tauler[N_FILES][N_COLUMNES], const Po
 			getPosicionsValides(tauler, posicioActual, fitxa, potmenjar, posicionsValides, nPosValides, arrPOSpotmenjar);
 		}
 		if (movimentActual.getnRecorregut() > 0) {
-			movimentActual.evaluaMoviment(tauler);//
+			movimentActual.evaluaMoviment(tauler, origen);//
 			m_movimentValids[m_nMovimentsValids] = movimentActual;
 			m_nMovimentsValids++;
 		}
