@@ -54,3 +54,10 @@ void Fitxa::insertaPos(const Posicio& pos)
 	if (comprovarRepeticio(m_posicionsValides, m_nPosicionsValides, pos))
 		m_posicionsValides[m_nPosicionsValides++] = pos;
 }
+void Fitxa::calculaMenjades(Fitxa tauler[N_FILES][N_COLUMNES])
+{
+	for (int i = 0; i < m_nMovimentsValids; i++)
+	{
+		m_movimentValids[i].evaluaMoviment(tauler);
+	}
+}
