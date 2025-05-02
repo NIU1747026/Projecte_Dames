@@ -52,8 +52,9 @@ void Moviment::evaluaMoviment(Fitxa tauler[N_FILES][N_COLUMNES], const Posicio& 
 }
 void Moviment::menja(Fitxa tauler[N_FILES][N_COLUMNES])
 {
+	Fitxa f;
 	for (int i = 0; i < m_nMenjades; i++)
 	{
-		tauler[m_menjades[i].getFila()][m_menjades[i].getColumna()].changeTipus(TIPUS_EMPTY);
+		tauler[m_menjades[i].getFila()][m_menjades[i].getColumna()] = f;
 	}
 }
