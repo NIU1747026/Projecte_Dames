@@ -4,13 +4,6 @@
 
 using namespace std;
 
-Tauler::Tauler()
-{
-	for (int i = 0; i < N_FILES; i++)
-		for (int j = 0; j < N_COLUMNES; j++)
-			m_tauler[i][j].inicialitza(COLOR_NEGRE, TIPUS_EMPTY);
-}
-
 stringstream& operator<<(stringstream& fitxer, Posicio& pos)
 {
 	fitxer << pos.toString(); return fitxer;

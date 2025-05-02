@@ -1,17 +1,15 @@
 #ifndef MOVIMENT_H_
 	#define MOVIMENT_H_
 
+#include "posicio.hpp"
+using namespace std;
+
+const int MAX_MOVIMENTS = 20;
 const int MAX_RECORREGUT = 10;
 const int MAX_POSICIONS = 20;
 
 const int N_FILES = 8;
 const int N_COLUMNES = 8;
-
-#include "posicio.hpp"
-
-using namespace std;
-
-bool comprovarRepeticio(const Posicio array[], const int& nPosicionsArray, const Posicio& pos);
 
 class Fitxa;
 
@@ -40,7 +38,6 @@ public:
 	bool operator>(const Moviment& mov) const; //retorna true si el primer moviment es millor que l'altre
 
 private:
-	//Posicio m_posFinal = recorregut[m_nRecorregut];
 	int m_nFitxesMenjades;
 	int m_nDamesMenjades;
 

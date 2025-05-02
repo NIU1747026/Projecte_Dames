@@ -27,5 +27,6 @@ private:
 };
 
 stringstream& operator<<(stringstream& fitxer, Posicio& pos);
+bool comprovarRepeticio(const Posicio array[], const int& nPosicionsArray, const Posicio& pos);
 
 #endif
