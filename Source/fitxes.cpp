@@ -32,7 +32,8 @@ const bool Fitxa::movimentEsValid(const Posicio& desti, Moviment& mov) const
 	{
 		for (int z = 0; z < m_movimentValids[i].getnRecorregut(); z++)
 		{
-			if (m_movimentValids[i].getPosFinal() == desti) 
+			if (m_movimentValids[i].getPosFinal() == desti)
+				mov = m_movimentValids[i];
 				return true;
 		}
 	}
@@ -61,3 +62,4 @@ void Fitxa::calculaMenjades(Fitxa tauler[N_FILES][N_COLUMNES])
 		m_movimentValids[i].evaluaMoviment(tauler);
 	}
 }
+
