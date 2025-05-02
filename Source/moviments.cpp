@@ -35,10 +35,10 @@ void Moviment::evaluaMoviment(Fitxa tauler[N_FILES][N_COLUMNES], const Posicio& 
 		}
 		else 
 		{
-			df = m_recorregut[i].getFila() - m_recorregut[i + 1].getFila();
-			dc = m_recorregut[i].getColumna() - m_recorregut[i + 1].getColumna();
-			fila = (m_recorregut[i].getFila() + m_recorregut[i + 1].getFila()) / 2;
-			colmna = (m_recorregut[i].getColumna() + m_recorregut[i + 1].getColumna()) / 2;
+			df = m_recorregut[i].getFila() - m_recorregut[i - 1].getFila();
+			dc = m_recorregut[i].getColumna() - m_recorregut[i - 1].getColumna();
+			fila = (m_recorregut[i].getFila() + m_recorregut[i - 1].getFila()) / 2;
+			colmna = (m_recorregut[i].getColumna() + m_recorregut[i - 1].getColumna()) / 2;
 		}
 		if (abs(df) == 2 && abs(dc) == 2)
 		{
