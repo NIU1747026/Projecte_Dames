@@ -25,9 +25,11 @@ void Moviment::evaluaMoviment(Fitxa tauler[N_FILES][N_COLUMNES])
 {
 	for (int i = 0; i < m_nRecorregut - 1; i++)
 	{
-		int fila = m_recorregut[i].getFila() + m_recorregut[i + 1].getFila() / 2;
-		int colmna = m_recorregut[i].getColumna() + m_recorregut[i + 1].getColumna() / 2; 
-		if (abs(m_recorregut[i].getFila() - m_recorregut[i + 1].getFila()) == 2 && abs(m_recorregut[i].getColumna() - m_recorregut[i + 1].getColumna()) == 2)
+		int df = m_recorregut[i].getFila() - m_recorregut[i + 1].getFila();
+		int dc = m_recorregut[i].getColumna() - m_recorregut[i + 1].getColumna();
+		int fila = (m_recorregut[i].getFila() + m_recorregut[i + 1].getFila()) / 2;
+		int colmna = (m_recorregut[i].getColumna() + m_recorregut[i + 1].getColumna()) / 2;
+		if (abs(df) == 2 && abs(dc) == 2)
 		{
 			m_menjades[m_nMenjades].setPos(fila , colmna);
 			m_nFitxesMenjades++;
