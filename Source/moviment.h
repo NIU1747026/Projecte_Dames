@@ -24,18 +24,17 @@ public:
 			return m_recorregut[m_nRecorregut - 1];
 		return {-1,-1};
 	};
-	int getFitxesMenjades() const { return m_nFitxesMenjades; };
-	int getDamesMenjades() const { return m_nDamesMenjades; };
-	int getnRecorregut() const { return m_nRecorregut; };
+	const int getFitxesMenjades() const { return m_nFitxesMenjades; };
+	const int getDamesMenjades() const { return m_nDamesMenjades; };
+	const int getnRecorregut() const { return m_nRecorregut; };
 
 	void evaluaMoviment(Fitxa tauler[N_FILES][N_COLUMNES], const Posicio& origen); //Observa el recorregut del moviment i, si hi ha un salt (ex: a1 -> c3) vol dir que a l'espai del mitg s'ha menjat una peça, aquesta posicio s'afegeix a l'array menjades i s'incrementa nFitxesMenjades(SEMPRE) i nDames nomes si es una dama
 	void menja(Fitxa tauler[N_FILES][N_COLUMNES]); //Recorre menjades i posa a TIPUS_EMPTY (es menja) les fitxes del tauler
 
-	bool esMenjada(Posicio& pos) { return !comprovarRepeticio(m_menjades, m_nMenjades, pos); }
+	const bool esMenjada(Posicio& pos) const { return !comprovarRepeticio(m_menjades, m_nMenjades, pos); }
 	void afegeixMenjada(Posicio& pos) { if (comprovarRepeticio(m_menjades, m_nMenjades, pos)) { m_menjades[m_nMenjades] = pos; m_nMenjades++; } };
 	void afegeixPos(Posicio& pos) { m_recorregut[m_nRecorregut] = pos; m_nRecorregut++; };
-	bool operator==(const Moviment& mov) const; //devuelve true si mov es el mismo
-	bool operator>(const Moviment& mov) const; //retorna true si el primer moviment es millor que l'altre
+	const bool operator>(const Moviment& mov) const; //retorna true si el primer moviment es millor que l'altre
 
 private:
 	int m_nFitxesMenjades;

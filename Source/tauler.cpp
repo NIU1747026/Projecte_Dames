@@ -52,23 +52,15 @@ void escriureFitxes(const Fitxa tauler[N_FILES][N_COLUMNES], int fila, int colum
 	{
 	case TIPUS_DAMA:
 		if (tauler[fila][columna].getColor() == COLOR_BLANC)
-		{
 			res.append("D ");
-		}
 		else
-		{
 			res.append("R ");
-		}
 		break;
 	case TIPUS_NORMAL:
 		if (tauler[fila][columna].getColor() == COLOR_BLANC)
-		{
 			res.append("O ");
-		}
 		else
-		{
 			res.append("X ");
-		}
 		break;
 	case TIPUS_EMPTY:
 		res.append("_ ");
@@ -95,9 +87,7 @@ string Tauler::toString() const
 		if (files < N_FILES)
 		{
 			for (int columna = 0; columna < N_COLUMNES; columna++)
-			{
 				escriureFitxes(m_tauler, files, columna, res);
-			}
 			res.append("\n");
 		}
 		else
@@ -145,4 +135,3 @@ void Tauler::getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posic
 	nPosicions = 0;
 	m_tauler[origen.getFila()][origen.getColumna()].afegeixPosicionsValides(posicionsPossibles, nPosicions);
 }
-

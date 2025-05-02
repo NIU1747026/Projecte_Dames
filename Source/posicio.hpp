@@ -16,17 +16,17 @@ public:
 
 	void setPos(int fila, int columna) { m_fila = fila; m_columna = columna; };
 	void setPos(const string& posicio) { m_fila = 7 - posicio[1] + '1'; m_columna = posicio[0] - 'a'; };
-	int getFila() const { return m_fila; };
-	int getColumna() const { return m_columna; };
+	const int getFila() const { return m_fila; };
+	const int getColumna() const { return m_columna; };
 
-	string toString() const { char x = 7 - m_fila + '1'; char y = m_columna + 'a'; return { y,x }; };
-	bool operator==(const Posicio& posicio) const { return (m_fila == posicio.m_fila && m_columna == posicio.m_columna); };
+	const string toString() const { char x = 7 - m_fila + '1'; char y = m_columna + 'a'; return { y,x }; };
+	const bool operator==(const Posicio& posicio) const { return (m_fila == posicio.m_fila && m_columna == posicio.m_columna); };
 
 private:
 	int m_fila, m_columna;
 };
 
 stringstream& operator<<(stringstream& fitxer, Posicio& pos);
-bool comprovarRepeticio(const Posicio array[], const int& nPosicionsArray, const Posicio& pos);
+const bool comprovarRepeticio(const Posicio array[], const int& nPosicionsArray, const Posicio& pos);
 
 #endif
