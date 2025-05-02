@@ -20,9 +20,6 @@ typedef enum
 
 #include "moviment.h"
 
-const int N_FILES = 8;
-const int N_COLUMNES = 8;
-
 class FStatus
 {
 public:

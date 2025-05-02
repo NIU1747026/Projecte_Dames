@@ -4,14 +4,19 @@
 const int MAX_RECORREGUT = 20;
 const int MAX_POSICIONS = 65;
 
+const int N_FILES = 8;
+const int N_COLUMNES = 8;
+
 #include "posicio.hpp"
 
 using namespace std;
 
+class Fitxa;
+
 class Moviment
 {
 public:
-	Moviment() : m_nRecorregut(0), m_nFitxesMenjades(0), m_nDamesMenjades(0) {};
+	Moviment() : m_nRecorregut(0), m_nFitxesMenjades(0), m_nDamesMenjades(0), m_nMenjades(0) {};
 	void inicialitza() { m_nRecorregut = 0; m_nFitxesMenjades = 0; m_nDamesMenjades = 0; };
 
 	const Posicio getPosFinal() const { 
