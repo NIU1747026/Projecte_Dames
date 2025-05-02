@@ -2,8 +2,6 @@
 #include <iostream>
 #include <fstream>
 
-using namespace std;
-
 stringstream& operator<<(stringstream& fitxer, Posicio& pos)
 {
 	fitxer << pos.toString(); return fitxer;

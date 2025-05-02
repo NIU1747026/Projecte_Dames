@@ -3,24 +3,14 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
-using namespace std;
 
-bool Moviment::operator==(const Moviment& mov) const
-{
-	if (m_nDamesMenjades == mov.m_nDamesMenjades && m_nFitxesMenjades == mov.m_nFitxesMenjades)
-	{
-		return true;
-	}
-	return false;
-}
-bool Moviment::operator>(const Moviment& mov) const
+const bool Moviment::operator>(const Moviment& mov) const
 {
 	if ((m_nFitxesMenjades > mov.m_nFitxesMenjades) || (m_nFitxesMenjades == mov.m_nFitxesMenjades && m_nDamesMenjades > mov.m_nDamesMenjades))
-	{
 		return true;
-	}
 	return false;
 }
+
 void Moviment::evaluaMoviment(Fitxa tauler[N_FILES][N_COLUMNES], const Posicio& origen)
 {
 	m_nMenjades = 0;
@@ -53,6 +43,7 @@ void Moviment::evaluaMoviment(Fitxa tauler[N_FILES][N_COLUMNES], const Posicio& 
 		}
 	}
 }
+
 void Moviment::menja(Fitxa tauler[N_FILES][N_COLUMNES])
 {
 	Fitxa f;

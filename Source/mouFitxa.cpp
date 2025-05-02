@@ -3,7 +3,6 @@
 #include "fitxes.h"
 #include <iostream>
 #include <fstream>
-using namespace std;
 
 bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti)
 {
@@ -13,8 +12,6 @@ bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti)
 		Fitxa f;
 		Posicio millorMov;
 		mov.menja(m_tauler);
-		//m_tauler[origen.getFila()][origen.getColumna()].calculaMenjades(m_tauler); 
-		//mirar si altre fitxa tenia millor moviment
 		for (int i = 0; i < N_FILES; i++)
 		{
 			for (int y = 0; y < N_COLUMNES; y++)
