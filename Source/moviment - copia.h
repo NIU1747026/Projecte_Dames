@@ -30,7 +30,7 @@ public:
 	int getDamesMenjades() const { return m_nDamesMenjades; };
 	int getnRecorregut() const { return m_nRecorregut; };
 
-	void evaluaMoviment(Fitxa tauler[N_FILES][N_COLUMNES], const Posicio& origen); //Observa el recorregut del moviment i, si hi ha un salt (ex: a1 -> c3) vol dir que a l'espai del mitg s'ha menjat una peça, aquesta posicio s'afegeix a l'array menjades i s'incrementa nFitxesMenjades(SEMPRE) i nDames nomes si es una dama
+	void evaluaMoviment(Fitxa tauler[N_FILES][N_COLUMNES]); //Observa el recorregut del moviment i, si hi ha un salt (ex: a1 -> c3) vol dir que a l'espai del mitg s'ha menjat una peça, aquesta posicio s'afegeix a l'array menjades i s'incrementa nFitxesMenjades(SEMPRE) i nDames nomes si es una dama
 	void menja(Fitxa tauler[N_FILES][N_COLUMNES]); //Recorre menjades i posa a TIPUS_EMPTY (es menja) les fitxes del tauler
 
 	bool esMenjada(Posicio& pos) { return !comprovarRepeticio(m_menjades, m_nMenjades, pos); }
