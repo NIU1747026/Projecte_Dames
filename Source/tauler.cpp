@@ -60,25 +60,25 @@ void escriureFitxes(const Fitxa tauler[N_FILES][N_COLUMNES], int fila, int colum
 	case TIPUS_DAMA:
 		if (tauler[fila][columna].getColor() == COLOR_BLANC)
 		{
-			res.append("D");
+			res.append("D ");
 		}
 		else
 		{
-			res.append("R");
+			res.append("R ");
 		}
 		break;
 	case TIPUS_NORMAL:
 		if (tauler[fila][columna].getColor() == COLOR_BLANC)
 		{
-			res.append("O");
+			res.append("O ");
 		}
 		else
 		{
-			res.append("X");
+			res.append("X ");
 		}
 		break;
 	case TIPUS_EMPTY:
-		res.append("_");
+		res.append("_ ");
 		break;
 	default:
 		break;

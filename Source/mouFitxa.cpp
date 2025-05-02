@@ -29,9 +29,9 @@ bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti)
 		if (m_tauler[origen.getFila()][origen.getColumna()].esMillorMoviment(mov))
 			m_tauler[desti.getFila()][desti.getColumna()] = m_tauler[origen.getFila()][origen.getColumna()];
 		m_tauler[origen.getFila()][origen.getColumna()] = f;
-		if (desti.getFila() == 8 && m_tauler[desti.getFila()][desti.getColumna()].getColor() == COLOR_BLANC)
+		if (desti.getFila() == 0 && m_tauler[desti.getFila()][desti.getColumna()].getColor() == COLOR_BLANC)
 			m_tauler[desti.getFila()][desti.getColumna()].changeTipus(TIPUS_DAMA);
-		if (desti.getFila() == 0 && m_tauler[desti.getFila()][desti.getColumna()].getColor() == COLOR_NEGRE)
+		if (desti.getFila() == 8 && m_tauler[desti.getFila()][desti.getColumna()].getColor() == COLOR_NEGRE)
 			m_tauler[desti.getFila()][desti.getColumna()].changeTipus(TIPUS_DAMA);
 		return true;
 	}
