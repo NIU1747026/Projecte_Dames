@@ -28,6 +28,6 @@ private:
 };
 
 stringstream& operator<<(stringstream& fitxer, Posicio& pos);
-const bool comprovarRepeticio(const Posicio array[], const int& nPosicionsArray, const Posicio& pos);
+const bool noEsRepeteix(const Posicio array[], const int& nPosicionsArray, const Posicio& pos);
 
 #endif

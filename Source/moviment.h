@@ -22,12 +22,12 @@ public:
 	const Posicio getPosFinal() const { if (m_nRecorregut > 0)return m_recorregut[m_nRecorregut - 1]; return { -1,-1 }; };
 	const int getFitxesMenjades() const { return m_nFitxesMenjades; };
 	const int getDamesMenjades() const { return m_nDamesMenjades; };
-	const int getnRecorregut() const { return m_nRecorregut; };
 
 	void menja(Fitxa tauler[N_FILES][N_COLUMNES]); //Recorre menjades i posa a TIPUS_EMPTY (es menja) les fitxes del tauler
 
-	const bool esMenjada(Posicio& pos) const { return !comprovarRepeticio(m_menjades, m_nMenjades, pos); }
-	void afegeixMenjada(Posicio& pos, bool esDama) { if (comprovarRepeticio(m_menjades, m_nMenjades, pos)) { m_menjades[m_nMenjades] = pos; m_nMenjades++; m_nFitxesMenjades++; if (esDama) { m_nDamesMenjades++; } } };
+	const bool esBuit() const { return m_nRecorregut == 0; };
+	const bool esMenjada(Posicio& pos) const { return !noEsRepeteix(m_menjades, m_nMenjades, pos); }
+	void afegeixMenjada(Posicio& pos, bool esDama) { if (noEsRepeteix(m_menjades, m_nMenjades, pos)) { m_menjades[m_nMenjades] = pos; m_nMenjades++; m_nFitxesMenjades++; if (esDama) { m_nDamesMenjades++; } } };
 	void afegeixPos(Posicio& pos) { m_recorregut[m_nRecorregut] = pos; m_nRecorregut++; };
 	const bool operator>(const Moviment& mov) const; //retorna true si el primer moviment es millor que l'altre
 

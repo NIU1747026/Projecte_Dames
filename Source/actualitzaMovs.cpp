@@ -24,10 +24,10 @@ void Fitxa::actualitzaMovimentsFitxa(Fitxa tauler[N_FILES][N_COLUMNES], const Po
 	{
 		movimentActual = movimentsPendents[--nMovPendents];
 		estatFitxa = arrMovEstat[nMovPendents];
-		if (movimentActual.getnRecorregut() != 0)
+		if (!movimentActual.esBuit())
 			posicioActual = movimentActual.getPosFinal();
 		getPosicionsValides(tauler, posicioActual, fitxa, estatFitxa, posicionsValides, nPosValides, arrPosEstat, menjadas, movimentActual);
-		if (movimentActual.getnRecorregut() > 0) {
+		if (!movimentActual.esBuit()) {
 			m_movimentValids[m_nMovimentsValids] = movimentActual;
 			m_nMovimentsValids++;
 		}
@@ -49,7 +49,7 @@ void Fitxa::actualitzaMovimentsFitxa(Fitxa tauler[N_FILES][N_COLUMNES], const Po
 			estatFitxa = arrPosEstat[0];
 			posicioActual = posicionsValides[0];
 			insertaPos(posicioActual);
-			if (movimentActual.getnRecorregut() > 0) {
+			if (!movimentActual.esBuit()) {
 				m_movimentValids[m_nMovimentsValids] = movimentActual;
 				m_nMovimentsValids++;
 			}

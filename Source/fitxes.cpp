@@ -2,7 +2,7 @@
 #include <iostream>
 #include <fstream>
 
-const bool comprovarRepeticio(const Posicio array[], const int& nPosicionsArray, const Posicio& pos)
+const bool noEsRepeteix(const Posicio array[], const int& nPosicionsArray, const Posicio& pos)
 {
 	for (int i = 0; i < nPosicionsArray; i++) 
 		if (array[i] == pos)
@@ -14,20 +14,20 @@ const bool comprovarRepeticio(const Posicio array[], const int& nPosicionsArray,
 void Fitxa::afegeixPosicionsValides(Posicio Valides[MAX_POSICIONS], int& nValides) const
 {
 	for (int i = 0; i < m_nPosicionsValides; i++)
-		if (comprovarRepeticio(Valides, nValides, m_posicionsValides[i]))
+		if (noEsRepeteix(Valides, nValides, m_posicionsValides[i]))
 			Valides[nValides++] = m_posicionsValides[i];
 }
 
 //mira destins de la llista de moviments y retorna true si hi es i el posa a mov.
-const bool Fitxa::movimentEsValid(const Posicio& desti, Moviment& mov) const 
+const bool Fitxa::movimentEsValid(const Posicio& desti, Moviment& mov) const
 {
 	for (int i = 0; i < m_nMovimentsValids; i++)
 	{
-			if (m_movimentValids[i].getPosFinal() == desti)
-			{
-				mov = m_movimentValids[i];
-				return true;
-			}
+		if (m_movimentValids[i].getPosFinal() == desti)
+		{
+			mov = m_movimentValids[i];
+			return true;
+		}
 	}
 	return false;
 }
@@ -43,7 +43,7 @@ const bool Fitxa::esMillorMoviment(const Moviment& mov) const
 
 void Fitxa::insertaPos(const Posicio& pos)
 {
-	if (comprovarRepeticio(m_posicionsValides, m_nPosicionsValides, pos))
+	if (noEsRepeteix(m_posicionsValides, m_nPosicionsValides, pos))
 		m_posicionsValides[m_nPosicionsValides++] = pos;
 }
 
