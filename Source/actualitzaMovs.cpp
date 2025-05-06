@@ -93,28 +93,23 @@ bool movValid(DireccioMov dir, DireccioMov dirValid, ColorFitxa color, TipusFitx
 
 void Fitxa::getPosicionsValides(Fitxa tauler[N_FILES][N_COLUMNES], const Posicio& origen, const Fitxa& fitxa, FStatus& status, Posicio posicionsPossibles[MAX_POSICIONS], int& nPossibles, FStatus arrStatus[MAX_POSICIONS], Posicio menjada[MAX_POSICIONS], Moviment& movimentActual)
 {
-	int col = origen.getColumna();
-	int fila = origen.getFila();
 	TipusFitxa tipus = fitxa.getTipus();
 	ColorFitxa color = fitxa.getColor();
-	bool potmenjar = status.getPotMenjar();
-	bool potmoure = status.getPotMoure();
-	DireccioMov dir = status.getDireccio();
 	nPossibles = 0;
 
 	Posicio check1, check2;
-	int c[4][2] = {{-1, -1}, {-1, +1}, {+1, -1}, {+1, +1}};
+	Posicio c[4] = {{-1, -1}, {-1, +1}, {+1, -1}, {+1, +1}};
 	DireccioMov dirs[4] = {DALT_ESQUERRA, DALT_DRETA, BAIX_ESQUERRA, BAIX_DRETA};
 
-	if (tipus == TIPUS_EMPTY || !potmenjar || !dinsLimits(origen))
+	if (tipus == TIPUS_EMPTY || !status.getPotMenjar() || !dinsLimits(origen))
 		return;
 
 	for (int i = 0; i < 4; i++)
 	{
-		check1.setPos(fila + c[i][0], col + c[i][1]);
-		check2.setPos(fila + 2 * c[i][0], col + 2 * c[i][1]);
-		if (dinsLimits(check1) && movValid(dir, dirs[i], color, tipus))
-			if (getFitxa(tauler, check1).getTipus() == TIPUS_EMPTY && potmoure)
+		check1 = origen + c[i];
+		check2 = origen + c[i] + c[i];
+		if (dinsLimits(check1) && movValid(status.getDireccio(), dirs[i], color, tipus))
+			if (getFitxa(tauler, check1).getTipus() == TIPUS_EMPTY && status.getPotMoure())
 			{
 				posicionsPossibles[nPossibles] = check1;
 				if (tipus == TIPUS_DAMA)
@@ -126,7 +121,7 @@ void Fitxa::getPosicionsValides(Fitxa tauler[N_FILES][N_COLUMNES], const Posicio
 				if (dinsLimits(check2) &&
 					getFitxa(tauler, check2).getTipus() == TIPUS_EMPTY &&
 					getFitxa(tauler, check1).getTipus() != TIPUS_EMPTY &&
-					getFitxa(tauler, check1).getColor() == !color &&
+					getFitxa(tauler, check1).getColor() != color &&
 					!movimentActual.esMenjada(check1))
 				{
 					posicionsPossibles[nPossibles] = check2;

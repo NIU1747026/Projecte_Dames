@@ -21,6 +21,7 @@ public:
 
 	const string toString() const { char x = 7 - m_fila + '1'; char y = m_columna + 'a'; return { y,x }; };
 	const bool operator==(const Posicio& posicio) const { return (m_fila == posicio.m_fila && m_columna == posicio.m_columna); };
+	Posicio operator+(const Posicio& posicio) const { Posicio r(m_fila + posicio.m_fila, m_columna + posicio.m_columna); return r; };
 
 private:
 	int m_fila, m_columna;
