@@ -13,23 +13,22 @@ void Fitxa::actualitzaMovimentsFitxa(Fitxa tauler[N_FILES][N_COLUMNES], const Po
 
 	Posicio menjadas[MAX_POSICIONS];
 	Posicio nein;
-	FStatus arrPOSpotmenjar[MAX_POSICIONS];
-	FStatus arrMOVpotmenjar[MAX_MOVIMENTS];
-	arrMOVpotmenjar[0].init(true, true, TOT);
+	FStatus arrPosEstat[MAX_POSICIONS];
+	FStatus arrMovEstat[MAX_MOVIMENTS];
+	arrMovEstat[0].init(true, true, TOT);
 
 	Posicio posicioActual = origen;
 	Fitxa fitxa = tauler[origen.getFila()][origen.getColumna()];
-	FStatus potmenjar;
+	FStatus estatFitxa;
 	do
 	{
 		movimentActual = movimentsPendents[--nMovPendents];
-		potmenjar = arrMOVpotmenjar[nMovPendents];
+		estatFitxa = arrMovEstat[nMovPendents];
 		if (movimentActual.getnRecorregut() != 0)
 			posicioActual = movimentActual.getPosFinal();
-		getPosicionsValides(tauler, posicioActual, fitxa, potmenjar, posicionsValides, nPosValides, arrPOSpotmenjar, menjadas, movimentActual);
+		getPosicionsValides(tauler, posicioActual, fitxa, estatFitxa, posicionsValides, nPosValides, arrPosEstat, menjadas, movimentActual);
 		if (movimentActual.getnRecorregut() > 0) {
 			m_movimentValids[m_nMovimentsValids] = movimentActual;
-			m_movimentValids[m_nMovimentsValids].evaluaMoviment(tauler, origen);
 			m_nMovimentsValids++;
 		}
 		while (nPosValides > 0)
@@ -40,32 +39,21 @@ void Fitxa::actualitzaMovimentsFitxa(Fitxa tauler[N_FILES][N_COLUMNES], const Po
 				movimentPendent = movimentActual;
 				movimentPendent.afegeixPos(posicionsValides[i]);
 				if (!(menjadas[i] == nein))
-					movimentPendent.afegeixMenjada(menjadas[i]);
+					movimentPendent.afegeixMenjada(menjadas[i], fitxa.getTipus() == TIPUS_DAMA);
 				movimentsPendents[nMovPendents] = movimentPendent;
-				if (movimentActual.getnRecorregut() > 0) {
-					m_movimentValids[m_nMovimentsValids] = movimentActual;
-					m_movimentValids[m_nMovimentsValids].evaluaMoviment(tauler, origen);
-					m_nMovimentsValids++;
-				}
-				arrMOVpotmenjar[nMovPendents++] = arrPOSpotmenjar[i];
+				arrMovEstat[nMovPendents++] = arrPosEstat[i];
 			}
 			movimentActual.afegeixPos(posicionsValides[0]);
 			if (!(menjadas[0] == nein))
-				movimentActual.afegeixMenjada(menjadas[0]);
-			potmenjar = arrPOSpotmenjar[0];
+				movimentActual.afegeixMenjada(menjadas[0], fitxa.getTipus() == TIPUS_DAMA);
+			estatFitxa = arrPosEstat[0];
 			posicioActual = posicionsValides[0];
 			insertaPos(posicioActual);
 			if (movimentActual.getnRecorregut() > 0) {
 				m_movimentValids[m_nMovimentsValids] = movimentActual;
-				m_movimentValids[m_nMovimentsValids].evaluaMoviment(tauler, origen);
 				m_nMovimentsValids++;
 			}
-			getPosicionsValides(tauler, posicioActual, fitxa, potmenjar, posicionsValides, nPosValides, arrPOSpotmenjar, menjadas, movimentActual);
-		}
-		if (movimentActual.getnRecorregut() > 0) {
-			m_movimentValids[m_nMovimentsValids] = movimentActual;
-			m_movimentValids[m_nMovimentsValids].evaluaMoviment(tauler, origen);
-			m_nMovimentsValids++;
+			getPosicionsValides(tauler, posicioActual, fitxa, estatFitxa, posicionsValides, nPosValides, arrPosEstat, menjadas, movimentActual);
 		}
 	} while (nMovPendents > 0);
 }
