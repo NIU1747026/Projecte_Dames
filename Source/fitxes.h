@@ -76,4 +76,7 @@ private:
 	Posicio m_posicionsValides[MAX_POSICIONS];
 };
 
+Fitxa getFitxa(const Fitxa tauler[N_FILES][N_COLUMNES], const Posicio& pos);
+
+
 #endif

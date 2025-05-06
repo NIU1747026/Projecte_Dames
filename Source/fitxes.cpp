@@ -46,3 +46,8 @@ void Fitxa::insertaPos(const Posicio& pos)
 	if (comprovarRepeticio(m_posicionsValides, m_nPosicionsValides, pos))
 		m_posicionsValides[m_nPosicionsValides++] = pos;
 }
+
+Fitxa getFitxa(const Fitxa tauler[N_FILES][N_COLUMNES], const Posicio& pos)
+{
+	return tauler[pos.getFila()][pos.getColumna()];
+}

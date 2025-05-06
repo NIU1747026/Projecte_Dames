@@ -18,7 +18,7 @@ void Fitxa::actualitzaMovimentsFitxa(Fitxa tauler[N_FILES][N_COLUMNES], const Po
 	arrMovEstat[0].init(true, true, TOT);
 
 	Posicio posicioActual = origen;
-	Fitxa fitxa = tauler[origen.getFila()][origen.getColumna()];
+	Fitxa fitxa = getFitxa(tauler, origen);
 	FStatus estatFitxa;
 	do
 	{
@@ -39,13 +39,13 @@ void Fitxa::actualitzaMovimentsFitxa(Fitxa tauler[N_FILES][N_COLUMNES], const Po
 				movimentPendent = movimentActual;
 				movimentPendent.afegeixPos(posicionsValides[i]);
 				if (!(menjadas[i] == nein))
-					movimentPendent.afegeixMenjada(menjadas[i], tauler[menjadas[i].getFila()][menjadas[i].getColumna()].getTipus() == TIPUS_DAMA);
+					movimentPendent.afegeixMenjada(menjadas[i], getFitxa(tauler, menjadas[i]).getTipus() == TIPUS_DAMA);
 				movimentsPendents[nMovPendents] = movimentPendent;
 				arrMovEstat[nMovPendents++] = arrPosEstat[i];
 			}
 			movimentActual.afegeixPos(posicionsValides[0]);
 			if (!(menjadas[0] == nein))
-				movimentActual.afegeixMenjada(menjadas[0], tauler[menjadas[0].getFila()][menjadas[0].getColumna()].getTipus() == TIPUS_DAMA);
+				movimentActual.afegeixMenjada(menjadas[0], getFitxa(tauler, menjadas[0]).getTipus() == TIPUS_DAMA);
 			estatFitxa = arrPosEstat[0];
 			posicioActual = posicionsValides[0];
 			insertaPos(posicioActual);
@@ -114,7 +114,7 @@ void Fitxa::getPosicionsValides(Fitxa tauler[N_FILES][N_COLUMNES], const Posicio
 		check1.setPos(fila + c[i][0], col + c[i][1]);
 		check2.setPos(fila + 2 * c[i][0], col + 2 * c[i][1]);
 		if (dinsLimits(check1) && movValid(dir, dirs[i], color, tipus))
-			if (tauler[fila + c[i][0]][col + c[i][1]].getTipus() == TIPUS_EMPTY && potmoure)
+			if (getFitxa(tauler, check1).getTipus() == TIPUS_EMPTY && potmoure)
 			{
 				posicionsPossibles[nPossibles] = check1;
 				if (tipus == TIPUS_DAMA)
@@ -124,9 +124,9 @@ void Fitxa::getPosicionsValides(Fitxa tauler[N_FILES][N_COLUMNES], const Posicio
 			}
 			else
 				if (dinsLimits(check2) &&
-					tauler[fila + 2 * c[i][0]][col + 2 * c[i][1]].getTipus() == TIPUS_EMPTY &&
-					tauler[fila + c[i][0]][col + c[i][1]].getTipus() != TIPUS_EMPTY &&
-					tauler[fila + c[i][0]][col + c[i][1]].getColor() == !color &&
+					getFitxa(tauler, check2).getTipus() == TIPUS_EMPTY &&
+					getFitxa(tauler, check1).getTipus() != TIPUS_EMPTY &&
+					getFitxa(tauler, check1).getColor() == !color &&
 					!movimentActual.esMenjada(check1))
 				{
 					posicionsPossibles[nPossibles] = check2;

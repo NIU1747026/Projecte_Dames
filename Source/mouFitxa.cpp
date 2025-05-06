@@ -7,7 +7,9 @@
 bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti)
 {
 	Moviment mov;
-	if (m_tauler[origen.getFila()][origen.getColumna()].movimentEsValid(desti, mov))
+	Fitxa fOrg = getFitxa(m_tauler, origen);
+
+	if (fOrg.movimentEsValid(desti, mov))
 	{
 		Fitxa f;
 		Posicio millorMov;
@@ -16,14 +18,15 @@ bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti)
 		{
 			for (int y = 0; y < N_COLUMNES; y++)
 			{
-				if (m_tauler[i][y].getColor() == m_tauler[origen.getFila()][origen.getColumna()].getColor() && (i != origen.getFila() && y != origen.getColumna()) && !m_tauler[i][y].esMillorMoviment(mov))
+				Posicio pos(i, y);
+				if (getFitxa(m_tauler, pos).getColor() == fOrg.getColor() && !(pos == origen) && !getFitxa(m_tauler, pos).esMillorMoviment(mov))
 					millorMov.setPos(i, y);
 			}
 		}
 		if(millorMov.getFila() != -1)
 			m_tauler[millorMov.getFila()][millorMov.getColumna()] = f;
-		if (m_tauler[origen.getFila()][origen.getColumna()].esMillorMoviment(mov))
-			m_tauler[desti.getFila()][desti.getColumna()] = m_tauler[origen.getFila()][origen.getColumna()];
+		if (fOrg.esMillorMoviment(mov))
+			m_tauler[desti.getFila()][desti.getColumna()] = fOrg;
 		m_tauler[origen.getFila()][origen.getColumna()] = f;
 		if (desti.getFila() == 0 && m_tauler[desti.getFila()][desti.getColumna()].getColor() == COLOR_BLANC)
 			m_tauler[desti.getFila()][desti.getColumna()].changeTipus(TIPUS_DAMA);
