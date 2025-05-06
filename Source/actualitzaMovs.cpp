@@ -39,13 +39,13 @@ void Fitxa::actualitzaMovimentsFitxa(Fitxa tauler[N_FILES][N_COLUMNES], const Po
 				movimentPendent = movimentActual;
 				movimentPendent.afegeixPos(posicionsValides[i]);
 				if (!(menjadas[i] == nein))
-					movimentPendent.afegeixMenjada(menjadas[i], fitxa.getTipus() == TIPUS_DAMA);
+					movimentPendent.afegeixMenjada(menjadas[i], tauler[menjadas[i].getFila()][menjadas[i].getColumna()].getTipus() == TIPUS_DAMA);
 				movimentsPendents[nMovPendents] = movimentPendent;
 				arrMovEstat[nMovPendents++] = arrPosEstat[i];
 			}
 			movimentActual.afegeixPos(posicionsValides[0]);
 			if (!(menjadas[0] == nein))
-				movimentActual.afegeixMenjada(menjadas[0], fitxa.getTipus() == TIPUS_DAMA);
+				movimentActual.afegeixMenjada(menjadas[0], tauler[menjadas[0].getFila()][menjadas[0].getColumna()].getTipus() == TIPUS_DAMA);
 			estatFitxa = arrPosEstat[0];
 			posicioActual = posicionsValides[0];
 			insertaPos(posicioActual);
