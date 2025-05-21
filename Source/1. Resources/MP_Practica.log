@@ -1,0 +1,7 @@
+﻿  joc.cpp
+C:\Users\vaemc_zg1ctji\OneDrive\Escritorio\Ariadna\UNIVERSIDAD\Projecte_Dames\Source\0. C++ Code\Logic Game\joc.cpp(46,72): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\vaemc_zg1ctji\OneDrive\Escritorio\Ariadna\UNIVERSIDAD\Projecte_Dames\Source\0. C++ Code\Logic Game\joc.cpp(46,66): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\vaemc_zg1ctji\OneDrive\Escritorio\Ariadna\UNIVERSIDAD\Projecte_Dames\Source\0. C++ Code\Logic Game\joc.cpp(77,77): warning C4305: 'argumento': truncamiento de 'double' a 'float'
+C:\Users\vaemc_zg1ctji\OneDrive\Escritorio\Ariadna\UNIVERSIDAD\Projecte_Dames\Source\0. C++ Code\Logic Game\joc.cpp(77,67): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\vaemc_zg1ctji\OneDrive\Escritorio\Ariadna\UNIVERSIDAD\Projecte_Dames\Source\0. C++ Code\Logic Game\joc.cpp(77,57): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+  MP_Practica.vcxproj -> C:\Users\vaemc_zg1ctji\OneDrive\Escritorio\Ariadna\UNIVERSIDAD\Projecte_Dames\Source\2. Platforms\0. Windows Desktop\Program\MP_Practica.exe
