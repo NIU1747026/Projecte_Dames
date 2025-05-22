@@ -1,7 +1,23 @@
-﻿  joc.cpp
-C:\Users\vaemc_zg1ctji\OneDrive\Escritorio\Ariadna\UNIVERSIDAD\Projecte_Dames\Source\0. C++ Code\Logic Game\joc.cpp(46,72): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\vaemc_zg1ctji\OneDrive\Escritorio\Ariadna\UNIVERSIDAD\Projecte_Dames\Source\0. C++ Code\Logic Game\joc.cpp(46,66): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\vaemc_zg1ctji\OneDrive\Escritorio\Ariadna\UNIVERSIDAD\Projecte_Dames\Source\0. C++ Code\Logic Game\joc.cpp(77,77): warning C4305: 'argumento': truncamiento de 'double' a 'float'
-C:\Users\vaemc_zg1ctji\OneDrive\Escritorio\Ariadna\UNIVERSIDAD\Projecte_Dames\Source\0. C++ Code\Logic Game\joc.cpp(77,67): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\vaemc_zg1ctji\OneDrive\Escritorio\Ariadna\UNIVERSIDAD\Projecte_Dames\Source\0. C++ Code\Logic Game\joc.cpp(77,57): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+﻿  actualitzaMovs.cpp
+  joc.cpp
+C:\Users\vaemc_zg1ctji\OneDrive\Escritorio\Ariadna\UNIVERSIDAD\Projecte_Dames\Source\0. C++ Code\Logic Game\joc.cpp(48,72): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\vaemc_zg1ctji\OneDrive\Escritorio\Ariadna\UNIVERSIDAD\Projecte_Dames\Source\0. C++ Code\Logic Game\joc.cpp(48,66): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\vaemc_zg1ctji\OneDrive\Escritorio\Ariadna\UNIVERSIDAD\Projecte_Dames\Source\0. C++ Code\Logic Game\joc.cpp(79,77): warning C4305: 'argumento': truncamiento de 'double' a 'float'
+C:\Users\vaemc_zg1ctji\OneDrive\Escritorio\Ariadna\UNIVERSIDAD\Projecte_Dames\Source\0. C++ Code\Logic Game\joc.cpp(79,67): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\vaemc_zg1ctji\OneDrive\Escritorio\Ariadna\UNIVERSIDAD\Projecte_Dames\Source\0. C++ Code\Logic Game\joc.cpp(79,57): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+  main.cpp
+  tauler.cpp
+C:\Users\vaemc_zg1ctji\OneDrive\Escritorio\Ariadna\UNIVERSIDAD\Projecte_Dames\Source\0. C++ Code\Logic Game\tauler.cpp(32,74): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\vaemc_zg1ctji\OneDrive\Escritorio\Ariadna\UNIVERSIDAD\Projecte_Dames\Source\0. C++ Code\Logic Game\tauler.cpp(32,68): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\vaemc_zg1ctji\OneDrive\Escritorio\Ariadna\UNIVERSIDAD\Projecte_Dames\Source\0. C++ Code\Logic Game\tauler.cpp(36,73): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\vaemc_zg1ctji\OneDrive\Escritorio\Ariadna\UNIVERSIDAD\Projecte_Dames\Source\0. C++ Code\Logic Game\tauler.cpp(36,67): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\vaemc_zg1ctji\OneDrive\Escritorio\Ariadna\UNIVERSIDAD\Projecte_Dames\Source\0. C++ Code\Logic Game\tauler.cpp(40,73): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\vaemc_zg1ctji\OneDrive\Escritorio\Ariadna\UNIVERSIDAD\Projecte_Dames\Source\0. C++ Code\Logic Game\tauler.cpp(40,67): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\vaemc_zg1ctji\OneDrive\Escritorio\Ariadna\UNIVERSIDAD\Projecte_Dames\Source\0. C++ Code\Logic Game\tauler.cpp(44,72): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\vaemc_zg1ctji\OneDrive\Escritorio\Ariadna\UNIVERSIDAD\Projecte_Dames\Source\0. C++ Code\Logic Game\tauler.cpp(44,66): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\vaemc_zg1ctji\OneDrive\Escritorio\Ariadna\UNIVERSIDAD\Projecte_Dames\Source\0. C++ Code\Logic Game\tauler.cpp(129,74): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\vaemc_zg1ctji\OneDrive\Escritorio\Ariadna\UNIVERSIDAD\Projecte_Dames\Source\0. C++ Code\Logic Game\tauler.cpp(129,68): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\vaemc_zg1ctji\OneDrive\Escritorio\Ariadna\UNIVERSIDAD\Projecte_Dames\Source\0. C++ Code\Logic Game\tauler.cpp(134,75): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\vaemc_zg1ctji\OneDrive\Escritorio\Ariadna\UNIVERSIDAD\Projecte_Dames\Source\0. C++ Code\Logic Game\tauler.cpp(134,69): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+  Generando código...
   MP_Practica.vcxproj -> C:\Users\vaemc_zg1ctji\OneDrive\Escritorio\Ariadna\UNIVERSIDAD\Projecte_Dames\Source\2. Platforms\0. Windows Desktop\Program\MP_Practica.exe

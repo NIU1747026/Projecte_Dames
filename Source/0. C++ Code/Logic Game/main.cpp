@@ -42,6 +42,7 @@ int main(int argc, const char* argv[])
     pantalla.show();
 
     Joc joc;
+    joc.getTauler().inicialitza();
     pantalla.update();
     do
     {
@@ -51,6 +52,7 @@ int main(int argc, const char* argv[])
         bool mouseStatus = Mouse_getBtnLeft();
         int mousePosX = Mouse_getX();
         int mousePosY = Mouse_getY();
+        joc.dibuixaFons();
         bool final = joc.actualitza(mousePosX, mousePosY, mouseStatus);
 
         // Actualitza la pantalla

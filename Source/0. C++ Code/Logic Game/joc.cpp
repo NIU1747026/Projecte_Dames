@@ -15,7 +15,11 @@ Joc::Joc()
 	GraphicManager::getInstance()->drawSprite(GRAFIC_FONS, 0, 0);
 	GraphicManager::getInstance()->drawSprite(GRAFIC_TAULER, POS_X_TAULER, POS_Y_TAULER);
 }
-
+void Joc::dibuixaFons()
+{
+	GraphicManager::getInstance()->drawSprite(GRAFIC_FONS, 0, 0);
+	GraphicManager::getInstance()->drawSprite(GRAFIC_TAULER, POS_X_TAULER, POS_Y_TAULER);
+}
 bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus) 
 {
 	//TODO 1: Interactuar amb la crida per dibuixar gràfics (sprites).
@@ -39,8 +43,6 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus)
 		(mousePosX <= (POS_X_TAULER + CASELLA_INICIAL_X + AMPLADA_CASELLA * NUM_COLS_TAULER)) &&
 		(mousePosY <= (POS_Y_TAULER + CASELLA_INICIAL_Y + ALCADA_CASELLA * NUM_FILES_TAULER)))
 	{
-		GraphicManager::getInstance()->drawSprite(GRAFIC_FONS, 0, 0);
-		GraphicManager::getInstance()->drawSprite(GRAFIC_TAULER, POS_X_TAULER, POS_Y_TAULER);
 		int posX = POS_X_TAULER + CASELLA_INICIAL_X + ((columna - 1) * AMPLADA_CASELLA);
 		int posY = POS_Y_TAULER + CASELLA_INICIAL_Y + ((fila - 1) * ALCADA_CASELLA);
 		GraphicManager::getInstance()->drawSprite(GRAFIC_FITXA_BLANCA, posX, posY);
