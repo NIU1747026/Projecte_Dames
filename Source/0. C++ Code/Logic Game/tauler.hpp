@@ -26,7 +26,7 @@ public:
 	void getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posicio posicionsPossibles[]); //Retorna tots moviments possibles de fitxa a l'origen (també intermitjos en cadena de menjar)
 	string toString() const; //genera string representant estat del tauler
 
-	void visualitza(); //permite visualizar todas las piezas del tablero, sin dibujar el fondo, usar metodo visualiza de fitxa
+	void visualitza(); //permite visualizar todas las piezas del tablero, dibujar el fondo, usar metodo visualiza de fitxa
 private:
 	Fitxa m_tauler[N_FILES][N_COLUMNES];
 };

@@ -14,9 +14,9 @@ class Joc
 public:
     Joc();
     
-    bool actualitza(int mousePosX, int mousePosY, bool mouseStatus);
+    bool actualitza(int mousePosX, int mousePosY, bool mouseStatus); // cambiar para que use el visualitza de tauler
     Tauler getTauler() { return taulerJoc; }
-    void dibuixaFons(); 
+    void dibuixaFons(); //quitar cuando se use el visualitza de tauler, ya que este ya dibuja el fondo
     void inicialitza(ifstream nomFitxer); //inicialitza tauler a través d'un fitxer, substituye joc.getTauler().inicialitza();
     
 private:
