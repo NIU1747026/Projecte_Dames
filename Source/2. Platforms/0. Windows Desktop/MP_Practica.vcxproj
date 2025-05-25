@@ -163,6 +163,7 @@
     <ClCompile Include="..\..\0. C++ Code\Logic Game\GraphicManager.cpp" />
     <ClCompile Include="..\..\0. C++ Code\Logic Game\joc.cpp" />
     <ClCompile Include="..\..\0. C++ Code\Logic Game\main.cpp" />
+    <ClCompile Include="..\..\0. C++ Code\Logic Game\mouFitxa.cpp" />
     <ClCompile Include="..\..\0. C++ Code\Logic Game\moviments.cpp" />
     <ClCompile Include="..\..\0. C++ Code\Logic Game\tauler.cpp" />
   </ItemGroup>

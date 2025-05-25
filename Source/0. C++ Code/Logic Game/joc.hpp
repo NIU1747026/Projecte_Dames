@@ -8,12 +8,7 @@
 #include "posicio.hpp"
 
 using namespace std;
-typedef enum
-{
-    MODE_JOC_NORMAL,
-    MODE_JOC_REPLAY,
-    MODE_JOC_NONE
-} ModeJoc;
+
 class Node
 {
 public:
@@ -28,7 +23,7 @@ private:
 class CuaMoviments
 {
 public:
-    CuaMoviments();
+    CuaMoviments() {}
     void inicialtzaJocReplay(const string& nomFitxer); //Al principi de la partida s’inicialitza amb tots els moviments guardats al fitxer indicat.
     void getSeguentMov(Posicio pos[2]); // guarda en la array [posInicio, posFinal], elimina el movimiento returneado
     void finalitzaJocNormal(const string& nomFitxer); //guarda al fitxer tots els mov de m_cuaMov i els va eliminants conforme els guarda
@@ -36,6 +31,7 @@ public:
 private:
     queue<Posicio> m_cuaMov; // se guarda de dos en dos los mov, primero pos inicial, luego pos final
 };
+
 class Joc 
 {
 

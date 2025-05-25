@@ -52,6 +52,7 @@
     <ClCompile Include="..\..\0. C++ Code\Logic Game\tauler.cpp">
       <Filter>Logic Game</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\0. C++ Code\Logic Game\mouFitxa.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\0. C++ Code\Graphic Lib\debug.h">
