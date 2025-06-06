@@ -1,5 +1,7 @@
 #include "fitxes.h"	
 #include <iostream>
+#include "GraphicManager.h"
+#include "info_joc.hpp"
 #include <fstream>
 
 const bool noEsRepeteix(const Posicio array[], const int& nPosicionsArray, const Posicio& pos)
@@ -9,16 +11,12 @@ const bool noEsRepeteix(const Posicio array[], const int& nPosicionsArray, const
 			return false;
 	return true;
 }
-
-// Afegeix a l'array valides, les posicions valides de la fitxa, amb compte de no repetir-ne cap que ja estigui
 void Fitxa::afegeixPosicionsValides(Posicio Valides[MAX_POSICIONS], int& nValides) const
 {
 	for (int i = 0; i < m_nPosicionsValides; i++)
 		if (noEsRepeteix(Valides, nValides, m_posicionsValides[i]))
 			Valides[nValides++] = m_posicionsValides[i];
 }
-
-//mira destins de la llista de moviments y retorna true si hi es i el posa a mov.
 const bool Fitxa::movimentEsValid(const Posicio& desti, Moviment& mov) const
 {
 	for (int i = 0; i < m_nMovimentsValids; i++)
@@ -31,8 +29,6 @@ const bool Fitxa::movimentEsValid(const Posicio& desti, Moviment& mov) const
 	}
 	return false;
 }
-
-//retorna true si no hi ha cap millor moviment
 const bool Fitxa::esMillorMoviment(const Moviment& mov) const
 {
 	for (int i = 0; i < m_nMovimentsValids; i++)
@@ -50,4 +46,26 @@ void Fitxa::insertaPos(const Posicio& pos)
 Fitxa getFitxa(const Fitxa tauler[N_FILES][N_COLUMNES], const Posicio& pos)
 {
 	return tauler[pos.getFila()][pos.getColumna()];
+}
+void Fitxa::visualitza(int x, int y)
+{
+	int posX = POS_X_TAULER + CASELLA_INICIAL_X + (y*AMPLADA_CASELLA);
+	int posY = POS_Y_TAULER + CASELLA_INICIAL_Y + (x*ALCADA_CASELLA);
+	switch (m_color)
+	{
+	COLOR_BLANC:
+		if (m_tipus == TIPUS_NORMAL)
+			GraphicManager::getInstance()->drawSprite(GRAFIC_FITXA_BLANCA, posX, posY);
+		else
+			GraphicManager::getInstance()->drawSprite(GRAFIC_DAMA_BLANCA, posX, posY);
+		break;
+	COLOR_NEGRE:
+		if (m_tipus == TIPUS_NORMAL)
+			GraphicManager::getInstance()->drawSprite(GRAFIC_FITXA_NEGRA, posX, posY);
+		else
+			GraphicManager::getInstance()->drawSprite(GRAFIC_DAMA_NEGRA, posX, posY);
+		break;
+	default:
+		break;
+	}
 }

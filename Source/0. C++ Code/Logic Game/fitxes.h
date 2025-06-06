@@ -53,7 +53,7 @@ public:
 	Fitxa() : m_color(COLOR_NEGRE), m_tipus(TIPUS_EMPTY), m_nMovimentsValids(0), m_nPosicionsValides(0) {};
 	void inicialitza(ColorFitxa color, TipusFitxa tipus) { m_color = color; m_tipus = tipus; m_nMovimentsValids = 0; m_nPosicionsValides = 0; };
 	
-	void visualitza(); //que visualice la fixa
+	void visualitza(int x, int y); //que visualice la fixa
 
 	const ColorFitxa getColor() const { return m_color; };
 	const TipusFitxa getTipus() const { return m_tipus; };

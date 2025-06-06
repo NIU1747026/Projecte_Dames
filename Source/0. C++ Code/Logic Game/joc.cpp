@@ -9,12 +9,23 @@
 #include <iostream>
 #include <fstream>
 #include "GraphicManager.h"
-
-Joc::Joc()
+void Joc::escullModeJoc()
 {
-	GraphicManager::getInstance()->drawSprite(GRAFIC_FONS, 0, 0);
-	GraphicManager::getInstance()->drawSprite(GRAFIC_TAULER, POS_X_TAULER, POS_Y_TAULER);
+	while (modeJoc == MODE_JOC_NONE)
+	{
+		int posTextX = POS_X_TAULER;
+		int posTextY = POS_Y_TAULER + (ALCADA_CASELLA * NUM_FILES_TAULER) + 120;
+		string msg = "Escull mode joc: /n 1- MODE JOC NORMAL /n 2- MODE JOC REPLAY";
+		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, posTextX, posTextY, 0.8, msg);
+		int mode;
+		cin >> mode;
+		if (mode == 1)
+			modeJoc = MODE_JOC_NORMAL;
+		if (mode == 2)
+			modeJoc = MODE_JOC_REPLAY;
+	}
 }
+
 void Joc::finalitza(const string& nomFitxer)
 {
 	switch (modeJoc)
@@ -43,11 +54,6 @@ void Joc::inicialitza(ModeJoc mode, const string& nomFitxerTauler, const string&
 
 		break;
 	}
-}
-void Joc::dibuixaFons()
-{
-	GraphicManager::getInstance()->drawSprite(GRAFIC_FONS, 0, 0);
-	GraphicManager::getInstance()->drawSprite(GRAFIC_TAULER, POS_X_TAULER, POS_Y_TAULER);
 }
 bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus) 
 {
@@ -138,7 +144,7 @@ simplement visualitzar el tauler i les fitxes.
 
 	int posTextX = POS_X_TAULER;
 	int posTextY = POS_Y_TAULER + (ALCADA_CASELLA * NUM_FILES_TAULER) + 120;
-	std::string msg = "PosX: " + to_string(mousePosX) + ", PosY: " + to_string(mousePosY);
+	string msg = "PosX: " + to_string(mousePosX) + ", PosY: " + to_string(mousePosY);
 	GraphicManager::getInstance()->drawFont(FONT_WHITE_30, posTextX, posTextY, 0.8, msg);
 
 	return false;

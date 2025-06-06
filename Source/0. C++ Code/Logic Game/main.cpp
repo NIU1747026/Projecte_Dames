@@ -42,9 +42,11 @@ int main(int argc, const char* argv[])
     pantalla.show();
 
     Joc joc;
+    joc.escullModeJoc();
     joc.getTauler().inicialitza();
-    pantalla.update();
-    do
+    //joc.getTauler().visualitza(); 
+    pantalla.update(); 
+    do 
     {
         // Captura tots els events de ratolí i teclat de l'ultim cicle
         pantalla.processEvents();
@@ -52,9 +54,9 @@ int main(int argc, const char* argv[])
         bool mouseStatus = Mouse_getBtnLeft();
         int mousePosX = Mouse_getX();
         int mousePosY = Mouse_getY();
-        joc.dibuixaFons();
+        
         bool final = joc.actualitza(mousePosX, mousePosY, mouseStatus);
-
+        //joc.getTauler().visualitza();
         // Actualitza la pantalla
         if ((mouseStatus) && (mousePosX >= (POS_X_TAULER + CASELLA_INICIAL_X)) &&
             (mousePosY >= POS_Y_TAULER + CASELLA_INICIAL_Y) &&

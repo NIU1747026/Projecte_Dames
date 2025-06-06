@@ -29,19 +29,19 @@ public:
     void finalitzaJocNormal(const string& nomFitxer); //guarda al fitxer tots els mov de m_cuaMov i els va eliminants conforme els guarda
     void guardaMov(const Posicio& posInicial, const Posicio& posFinal); //guarda en la cola 1ro la pos inicial y luego la final
 private:
-    queue<Posicio> m_cuaMov; // se guarda de dos en dos los mov, primero pos inicial, luego pos final
+    queue<Posicio> m_cuaPosInicial;
+    queue<Posicio> m_cuaPosFinal;// se guarda de dos en dos los mov, primero pos inicial, luego pos final
 };
 
 class Joc 
 {
 
 public:
-    Joc();
+    Joc() {};
     
     bool actualitza(int mousePosX, int mousePosY, bool mouseStatus); // cambiar para que use el visualitza de tauler HA DE RETORNAR TRUE AL ACABAR
     //I MOSTRAR EL JUGADOR QUE HA GUANYAT amb bool comprobaSiAcabat(); 
     Tauler getTauler() { return taulerJoc; }
-    void dibuixaFons(); //quitar cuando se use el visualitza de tauler, ya que este ya dibuja el fondo
     void inicialitza(ModeJoc mode, const string& nomFitxerTauler, const string& nomFitxerMoviments); //inicialitza tauler a través d'un fitxer, substituye joc.getTauler().inicialitza(); inicialitza segons mode joc
     void finalitza(const string& nomFitxer); //escribe en un fichero los movimientos hechos en la partida.
 

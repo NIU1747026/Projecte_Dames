@@ -23,25 +23,19 @@ void Tauler::inicialitza(const string& nomFitxer)
 	{
 		fitxer >> mirarFitxa >> coordenada;
 		fitcha.setPos(coordenada);
-		int posX = POS_X_TAULER + CASELLA_INICIAL_X + ((fitcha.getColumna())*AMPLADA_CASELLA);
-		int posY = POS_Y_TAULER + CASELLA_INICIAL_Y + ((fitcha.getFila())*ALCADA_CASELLA);
 		switch (mirarFitxa)
 		{
 			case 'O':
 				m_tauler[fitcha.getFila()][fitcha.getColumna()].inicialitza(COLOR_BLANC,TIPUS_NORMAL);
-				GraphicManager::getInstance()->drawSprite(GRAFIC_FITXA_BLANCA, posX, posY);
 				break;
 			case 'D':
 				m_tauler[fitcha.getFila()][fitcha.getColumna()].inicialitza(COLOR_BLANC,TIPUS_DAMA);
-				GraphicManager::getInstance()->drawSprite(GRAFIC_DAMA_BLANCA, posX, posY);
 				break;
 			case 'X':
 				m_tauler[fitcha.getFila()][fitcha.getColumna()].inicialitza(COLOR_NEGRE,TIPUS_NORMAL);
-				GraphicManager::getInstance()->drawSprite(GRAFIC_FITXA_NEGRA, posX, posY);
 				break;
 			case 'R':
 				m_tauler[fitcha.getFila()][fitcha.getColumna()].inicialitza(COLOR_NEGRE,TIPUS_DAMA);
-				GraphicManager::getInstance()->drawSprite(GRAFIC_DAMA_NEGRA, posX, posY);
 				break;
 		default:
 			break;
@@ -121,18 +115,13 @@ void Tauler::inicialitza() //inicialitzar partida desde zero
 		{
 			if (((fila % 2 == 0) && (columna % 2 != 0)) || ((fila % 2 != 0) && (columna % 2 == 0)))
 			{
-				int posX = POS_X_TAULER + CASELLA_INICIAL_X + ((columna) * AMPLADA_CASELLA);
-				int posY = POS_Y_TAULER + CASELLA_INICIAL_Y + ((fila) * ALCADA_CASELLA);
 				if (fila >= 0 && fila <= 2)
 				{
 					m_tauler[fila][columna].inicialitza(COLOR_NEGRE, TIPUS_NORMAL);
-					GraphicManager::getInstance()->drawSprite(GRAFIC_FITXA_NEGRA, posX, posY);
 				}
 				else if (fila >= 5 && fila <= 7)
 				{
 					m_tauler[fila][columna].inicialitza(COLOR_BLANC, TIPUS_NORMAL);
-					GraphicManager::getInstance()->drawSprite(GRAFIC_FITXA_BLANCA, posX, posY);
-					
 				}
 			}
 		}
@@ -143,4 +132,19 @@ void Tauler::getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posic
 {
 	nPosicions = 0;
 	getFitxa(m_tauler, origen).afegeixPosicionsValides(posicionsPossibles, nPosicions);
+}
+void Tauler::visualitza()
+{
+	GraphicManager::getInstance()->drawSprite(GRAFIC_FONS, 0, 0);
+	GraphicManager::getInstance()->drawSprite(GRAFIC_TAULER, POS_X_TAULER, POS_Y_TAULER);
+	for (int fila = 0; fila < N_FILES; fila++)
+	{
+		for (int columna = 0; columna < N_COLUMNES; columna++)
+		{
+			if (m_tauler[fila][columna].getTipus() != TIPUS_EMPTY)
+			{
+				m_tauler[fila][columna].visualitza(fila, columna);
+			}
+		}
+	}
 }
