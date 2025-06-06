@@ -37,7 +37,7 @@ class Joc
 {
 
 public:
-    Joc() {};
+    Joc() { modeJoc = MODE_JOC_NONE; torn = COLOR_BLANC; };
     
     bool actualitza(int mousePosX, int mousePosY, bool mouseStatus); // cambiar para que use el visualitza de tauler HA DE RETORNAR TRUE AL ACABAR
     //I MOSTRAR EL JUGADOR QUE HA GUANYAT amb bool comprobaSiAcabat(); 

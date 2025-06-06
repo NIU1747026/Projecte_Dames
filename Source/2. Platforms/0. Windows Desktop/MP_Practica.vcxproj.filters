@@ -31,19 +31,13 @@
     <ClCompile Include="..\..\0. C++ Code\Graphic Lib\NFont\SDL_FontCache.cpp">
       <Filter>Graphic Lib\NFont</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\0. C++ Code\Logic Game\GraphicManager.cpp">
-      <Filter>Logic Game\Source files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\0. C++ Code\Logic Game\main.cpp">
-      <Filter>Logic Game\Source files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\0. C++ Code\Logic Game\joc.cpp">
-      <Filter>Logic Game\Source files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\0. C++ Code\Logic Game\actualitzaMovs.cpp">
       <Filter>Logic Game</Filter>
     </ClCompile>
     <ClCompile Include="..\..\0. C++ Code\Logic Game\fitxes.cpp">
+      <Filter>Logic Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\0. C++ Code\Logic Game\mouFitxa.cpp">
       <Filter>Logic Game</Filter>
     </ClCompile>
     <ClCompile Include="..\..\0. C++ Code\Logic Game\moviments.cpp">
@@ -52,7 +46,15 @@
     <ClCompile Include="..\..\0. C++ Code\Logic Game\tauler.cpp">
       <Filter>Logic Game</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\0. C++ Code\Logic Game\mouFitxa.cpp" />
+    <ClCompile Include="..\..\0. C++ Code\Logic Game\GraphicManager.cpp">
+      <Filter>Logic Game\Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\0. C++ Code\Logic Game\joc.cpp">
+      <Filter>Logic Game\Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\0. C++ Code\Logic Game\main.cpp">
+      <Filter>Logic Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\0. C++ Code\Graphic Lib\debug.h">
@@ -97,15 +99,6 @@
     <ClInclude Include="..\..\0. C++ Code\Graphic Lib\NFont\SDL_FontCache.h">
       <Filter>Graphic Lib\NFont</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\0. C++ Code\Logic Game\GraphicManager.h">
-      <Filter>Logic Game\Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\0. C++ Code\Logic Game\joc.hpp">
-      <Filter>Logic Game\Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\0. C++ Code\Logic Game\info_joc.hpp">
-      <Filter>Logic Game\Header files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\0. C++ Code\Logic Game\fitxes.h">
       <Filter>Logic Game</Filter>
     </ClInclude>
@@ -117,6 +110,15 @@
     </ClInclude>
     <ClInclude Include="..\..\0. C++ Code\Logic Game\tauler.hpp">
       <Filter>Logic Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\0. C++ Code\Logic Game\GraphicManager.h">
+      <Filter>Logic Game\Source files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\0. C++ Code\Logic Game\info_joc.hpp">
+      <Filter>Logic Game\Source files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\0. C++ Code\Logic Game\joc.hpp">
+      <Filter>Logic Game\Source files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
