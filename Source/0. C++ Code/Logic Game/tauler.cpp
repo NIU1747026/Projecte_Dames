@@ -109,26 +109,20 @@ void Tauler::actualitzaMovimentsValids()
 
 void Tauler::inicialitza() //inicialitzar partida desde zero
 {
-	GraphicManager::getInstance()->drawSprite(GRAFIC_FONS, 0, 0);
-	GraphicManager::getInstance()->drawSprite(GRAFIC_TAULER, POS_X_TAULER, POS_Y_TAULER);
 	
 	for (int fila = 0; fila < N_FILES; fila++)
 	{
 		for (int columna = 0; columna < N_COLUMNES; columna++)
 		{
-			int posX = POS_X_TAULER + CASELLA_INICIAL_X + (columna * AMPLADA_CASELLA);
-			int posY = POS_Y_TAULER + CASELLA_INICIAL_Y + (fila * ALCADA_CASELLA);
 			if (((fila % 2 == 0) && (columna % 2 != 0)) || ((fila % 2 != 0) && (columna % 2 == 0)))
 			{
 				if (fila >= 0 && fila <= 2)
 				{
 					m_tauler[fila][columna].inicialitza(COLOR_NEGRE, TIPUS_NORMAL);
-					GraphicManager::getInstance()->drawSprite(GRAFIC_FITXA_NEGRA, posX, posY);
 				}
 				else if (fila >= 5 && fila <= 7)
 				{
 					m_tauler[fila][columna].inicialitza(COLOR_BLANC, TIPUS_NORMAL);
-					GraphicManager::getInstance()->drawSprite(GRAFIC_FITXA_BLANCA, posX, posY);
 				}
 			}
 		}

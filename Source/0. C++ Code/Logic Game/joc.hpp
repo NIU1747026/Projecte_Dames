@@ -24,7 +24,7 @@ class CuaMoviments
 {
 public:
     CuaMoviments() {}
-    void inicialtzaJocReplay(const string& nomFitxer); //Al principi de la partida s’inicialitza amb tots els moviments guardats al fitxer indicat.
+    void inicialtzaJocReplay(const string& nomFitxer) {} //Al principi de la partida s’inicialitza amb tots els moviments guardats al fitxer indicat.
     void getSeguentMov(Posicio pos[2]); // guarda en la array [posInicio, posFinal], elimina el movimiento returneado
     void finalitzaJocNormal(const string& nomFitxer); //guarda al fitxer tots els mov de m_cuaMov i els va eliminants conforme els guarda
     void guardaMov(const Posicio& posInicial, const Posicio& posFinal); //guarda en la cola 1ro la pos inicial y luego la final
@@ -37,22 +37,24 @@ class Joc
 {
 
 public:
-    Joc() { modeJoc = MODE_JOC_NORMAL; m_torn = COLOR_BLANC; };
+    Joc() { modeJoc = MODE_JOC_NONE; m_torn = COLOR_BLANC; taulerJoc = new Tauler; };
     
     bool actualitza(int mousePosX, int mousePosY, bool mouseStatus); // cambiar para que use el visualitza de tauler HA DE RETORNAR TRUE AL ACABAR
     //I MOSTRAR EL JUGADOR QUE HA GUANYAT amb bool comprobaSiAcabat(); 
-    Tauler getTauler() { return taulerJoc; }
+    Tauler& getTauler() { return* taulerJoc; }
     void inicialitza(ModeJoc mode, const string& nomFitxerTauler, const string& nomFitxerMoviments); //inicialitza tauler a través d'un fitxer, substituye joc.getTauler().inicialitza(); inicialitza segons mode joc
     void finalitza(const string& nomFitxer); //escribe en un fichero los movimientos hechos en la partida.
 
-    void escullModeJoc(Screen p);// bucle que no para hasta que escojas mode de joc  
-    bool comprobaSiAcabat() { return false; } //retorna true si la partida ha finalitzat (jugador sense fitxes o no pot moure) Si la partida ja s’ha 
+    void escullModeJoc(Screen& p);// bucle que no para hasta que escojas mode de joc  
+    bool comprobaSiAcabat() { return false; } //retorna true si la partida ha finalitzat (jugador sense fitxes o no pot moure) Si la partida ja s’ha  
     //acabat s’haurà de mostrar per pantalla quin és el jugador que ha guanyat i retornar
     //true com a resultat de la funció.
     void cambiaTorn(); //cambia el torn del jugador q està jugant després de mirar si la partida ha finalitzat amb el metode comprobaSiFinalitzat.
     void mostraModeITorn(); //mostra per pantalla el mode en el que s'està jugant i el torn actual
+
+    ModeJoc getMode() { return modeJoc; }
 private:
-    Tauler taulerJoc;
+    Tauler* taulerJoc;
     CuaMoviments m_cua;
 
     ModeJoc modeJoc;

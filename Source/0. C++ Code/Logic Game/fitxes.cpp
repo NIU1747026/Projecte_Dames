@@ -54,13 +54,13 @@ void Fitxa::visualitza(int x, int y)
 	IMAGE_NAME g = GRAFIC_FITXA_BLANCA;
 	switch (m_color)
 	{
-	COLOR_BLANC:
+	case COLOR_BLANC:
 		if (m_tipus == TIPUS_NORMAL)
 			g = GRAFIC_FITXA_BLANCA;
 		else
 			g = GRAFIC_DAMA_BLANCA;
 		break;
-	COLOR_NEGRE:
+	case COLOR_NEGRE: 
 		if (m_tipus == TIPUS_NORMAL)
 			g = GRAFIC_FITXA_NEGRA;
 		else

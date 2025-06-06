@@ -19,6 +19,9 @@ public:
 				m_tauler[i][j].inicialitza(COLOR_NEGRE, TIPUS_EMPTY);
 	};
 
+	Fitxa getFitxaPos(int x, int m) { return m_tauler[x][m]; }
+
+
 	void inicialitza(const string& nomFitxer); //Tauler a partir de fitxer, HAY QUE HACER QUE DIBUJE FIXAS
 	void inicialitza(); // Tauler en posició inicial
 	void actualitzaMovimentsValids(); //Fitxa per fitxa, actualitzar moviments possibles
@@ -27,7 +30,7 @@ public:
 	string toString() const; //genera string representant estat del tauler
 
 	void visualitza(); //permite visualizar todas las piezas del tablero, dibujar el fondo, usar metodo visualiza de fitxa
-	void visualtzaMovValids(const Fitxa& fitxaSeleccionada); //permite visualizar los mov validos de la fixa seleccionada
+	void visualtzaMovValids(int x, int y); //permite visualizar los mov validos de la fixa seleccionada
 private:
 	Fitxa m_tauler[N_FILES][N_COLUMNES];
 };
