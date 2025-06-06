@@ -9,6 +9,44 @@
 #include <iostream>
 #include <fstream>
 #include "GraphicManager.h"
+bool Joc::comprobaSiAcabat()
+{
+	Fitxa f;
+	int blanques = 0;
+	int negres = 0;
+	bool nMovBlanques = false;
+	bool nMovNegres = false;
+	for (int i = 0; i < N_FILES; i++)
+	{
+		for (int y = 0; y < N_COLUMNES; y++)
+		{
+			f = taulerJoc->getFitxaPos(i, y);
+			if (f.getColor() == COLOR_BLANC)
+			{
+				blanques++;
+				if (f.getNMovimentsValids() != 0)
+					nMovBlanques = true;
+			}
+			if (f.getColor() == COLOR_NEGRE)
+			{
+				negres++;
+				if (f.getNMovimentsValids() != 0)
+					nMovNegres = true;
+			}
+		}
+	}
+	if (nMovNegres == false || negres == 0)
+	{
+		m_guanyador = COLOR_BLANC;
+		return true;
+	}
+	if (nMovBlanques == false || blanques == 0)
+	{
+		m_guanyador = COLOR_NEGRE;
+		return true;
+	}
+	return false;
+}
 void Joc::escullModeJoc(Screen& p)
 {
 	while (modeJoc == MODE_JOC_NONE)

@@ -46,7 +46,7 @@ public:
     void finalitza(const string& nomFitxer); //escribe en un fichero los movimientos hechos en la partida.
 
     void escullModeJoc(Screen& p);// bucle que no para hasta que escojas mode de joc  
-    bool comprobaSiAcabat() { return false; } //retorna true si la partida ha finalitzat (jugador sense fitxes o no pot moure) Si la partida ja s’ha  
+    bool comprobaSiAcabat(); //retorna true si la partida ha finalitzat (jugador sense fitxes o no pot moure) Si la partida ja s’ha  
     //acabat s’haurà de mostrar per pantalla quin és el jugador que ha guanyat i retornar
     //true com a resultat de la funció.
     void cambiaTorn(); //cambia el torn del jugador q està jugant després de mirar si la partida ha finalitzat amb el metode comprobaSiFinalitzat.
@@ -59,7 +59,7 @@ private:
 
     ModeJoc modeJoc;
     string nomFitxer;
-    ColorFitxa m_torn;
+    ColorFitxa m_torn, m_guanyador;
 };
 
 #endif 
