@@ -9,23 +9,64 @@
 #include <iostream>
 #include <fstream>
 #include "GraphicManager.h"
-void Joc::escullModeJoc()
+void Joc::escullModeJoc(Screen p)
 {
 	while (modeJoc == MODE_JOC_NONE)
 	{
+		GraphicManager::getInstance()->drawSprite(GRAFIC_FONS, 0, 0);
 		int posTextX = POS_X_TAULER;
-		int posTextY = POS_Y_TAULER + (ALCADA_CASELLA * NUM_FILES_TAULER) + 120;
-		string msg = "Escull mode joc: /n 1- MODE JOC NORMAL /n 2- MODE JOC REPLAY";
+		int posTextY = POS_Y_TAULER;
+		string msg = "Escull mode joc:";
 		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, posTextX, posTextY, 0.8, msg);
-		int mode;
-		cin >> mode;
-		if (mode == 1)
-			modeJoc = MODE_JOC_NORMAL;
-		if (mode == 2)
-			modeJoc = MODE_JOC_REPLAY;
+		msg = " 1- MODE JOC NORMAL ";
+		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, posTextX, posTextY + 100, 0.8, msg);
+		msg = " 2- MODE JOC REPLAY";
+		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, posTextX, posTextY + 200, 0.8, msg);
+		p.update();
 	}
 }
-
+void Joc::cambiaTorn()
+{
+	if (!comprobaSiAcabat())
+	{
+		switch (m_torn)
+		{
+		COLOR_BLANC:
+			m_torn = COLOR_NEGRE;
+			break;
+		COLOR_NEGRE:
+			m_torn = COLOR_BLANC;
+		default:
+			break;
+		}
+	}
+}
+void Joc::mostraModeITorn()
+{
+	int posTextX = POS_X_TAULER;
+	int posTextY = POS_Y_TAULER + (ALCADA_CASELLA * NUM_FILES_TAULER) + 120;
+	string mode, torn;
+	switch (modeJoc)
+	{
+	MODE_JOC_NORMAL:
+		mode = "Normal";
+		break;
+	MODE_JOC_REPLAY:
+		mode = "Replay";
+		break;
+	}
+	switch (m_torn)
+	{
+	COLOR_BLANC:
+		torn = "Blanc";
+		break;
+	COLOR_NEGRE:
+		torn = "Negre";
+		break;
+	}
+	string msg = "Mode: " + mode + ", Torn: " + torn;
+	GraphicManager::getInstance()->drawFont(FONT_WHITE_30, posTextX, posTextY, 0.8, msg);
+}
 void Joc::finalitza(const string& nomFitxer)
 {
 	switch (modeJoc)
@@ -44,6 +85,7 @@ void Joc::inicialitza(ModeJoc mode, const string& nomFitxerTauler, const string&
 	switch (modeJoc)
 	{
 	MODE_JOC_NORMAL:
+		
 		//El fitxer indicat al paràmetre nomFitxerMoviments s’haurà d’utilitzar per guardar, al final de la partida, tots
 		//els moviments que s’hagin fet durant el desenvolupament de la partida.
 
@@ -57,9 +99,14 @@ void Joc::inicialitza(ModeJoc mode, const string& nomFitxerTauler, const string&
 }
 bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus) 
 {
-	switch (modeJoc)
+	GraphicManager::getInstance()->drawSprite(GRAFIC_FONS, 0, 0);
+	GraphicManager::getInstance()->drawSprite(GRAFIC_TAULER, POS_X_TAULER, POS_Y_TAULER);
+	taulerJoc.visualitza();
+	if (modeJoc == MODE_JOC_NORMAL)
 	{
-	MODE_JOC_NORMAL:
+		GraphicManager::getInstance()->drawSprite(GRAFIC_FONS, 0, 0);
+		GraphicManager::getInstance()->drawSprite(GRAFIC_TAULER, POS_X_TAULER, POS_Y_TAULER);
+		taulerJoc.visualitza();
 		/*Si s’ha fet clic amb el ratolí a sobre d’una fitxa del color del jugador que té el torn, aquesta fitxa ha de
 quedar seleccionada com la fitxa que es vol moure i s’hauran de recuperar els moviments vàlids que pot
 fer la fitxa (utilitzant els mètodes de la classe Tauler ja implementats a la primera part del projecte).
@@ -76,8 +123,9 @@ Si no s’interactua amb el ratolí o es fa clic a sobre de qualsevol altra posició
 simplement visualitzar el tauler, les fitxes i les posicions dels moviments vàlids (si hi ha alguna fitxa
 seleccionada)
 */
-		break;
-	MODE_JOC_REPLAY:
+	}
+	if (modeJoc == MODE_JOC_REPLAY)
+	{
 		/*Si s’ha fet clic amb el ratolí a sobre del tauler de joc s’ha de recuperar i eliminar el primer moviment de la
 cua de moviments, executar-lo i visualitzar el nou estat del tauler i de les fitxes. També s’haurà de
 comprovar si s’ha acabat la partida perquè algun jugador es queda sense fitxes i, si no s’acaba, canviar el
@@ -89,8 +137,10 @@ missatge per pantalla indicant que no es poden fer més moviments.
 Si no s’interactua amb el ratolí o es fa clic a sobre de qualsevol altra posició de pantalla, no s’ha de fer res,
 simplement visualitzar el tauler i les fitxes.
 */
-		break;
 	}
+
+
+
 	//TODO 1: Interactuar amb la crida per dibuixar gràfics (sprites).
 	// 	      Dibuixar a pantalla el fons i el gràfic amb el tauler buit.
 	//------------------------------------------------------------------
@@ -104,8 +154,7 @@ simplement visualitzar el tauler i les fitxes.
 
 
 	//TODO 1.3: Dibuixar a pantalla el gràfic amb el tauler i una fitxa blanca a la posició (fila, columna ) del tauler
-
-	int fila = (mousePosY - POS_Y_TAULER)/ALCADA_CASELLA;
+	/*int fila = (mousePosY - POS_Y_TAULER)/ALCADA_CASELLA;
 	int columna = (mousePosX-POS_X_TAULER)/AMPLADA_CASELLA;
 	if ((mouseStatus) && (mousePosX >= (POS_X_TAULER + CASELLA_INICIAL_X)) &&
 		(mousePosY >= POS_Y_TAULER + CASELLA_INICIAL_Y) &&
@@ -115,7 +164,8 @@ simplement visualitzar el tauler i les fitxes.
 		int posX = POS_X_TAULER + CASELLA_INICIAL_X + ((columna - 1) * AMPLADA_CASELLA);
 		int posY = POS_Y_TAULER + CASELLA_INICIAL_Y + ((fila - 1) * ALCADA_CASELLA);
 		GraphicManager::getInstance()->drawSprite(GRAFIC_FITXA_BLANCA, posX, posY);
-	}
+	}*/
+	
 	//TODO 2: Interactuar amb el ratolí.
 	//------------------------------------------------------------------
 	//TODO 2.1: Dibuixar la fitxa blanca al tauler només si estem pressionant el botó del ratolí

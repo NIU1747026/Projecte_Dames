@@ -51,21 +51,21 @@ void Fitxa::visualitza(int x, int y)
 {
 	int posX = POS_X_TAULER + CASELLA_INICIAL_X + (y*AMPLADA_CASELLA);
 	int posY = POS_Y_TAULER + CASELLA_INICIAL_Y + (x*ALCADA_CASELLA);
+	IMAGE_NAME g = GRAFIC_FITXA_BLANCA;
 	switch (m_color)
 	{
 	COLOR_BLANC:
 		if (m_tipus == TIPUS_NORMAL)
-			GraphicManager::getInstance()->drawSprite(GRAFIC_FITXA_BLANCA, posX, posY);
+			g = GRAFIC_FITXA_BLANCA;
 		else
-			GraphicManager::getInstance()->drawSprite(GRAFIC_DAMA_BLANCA, posX, posY);
+			g = GRAFIC_DAMA_BLANCA;
 		break;
 	COLOR_NEGRE:
 		if (m_tipus == TIPUS_NORMAL)
-			GraphicManager::getInstance()->drawSprite(GRAFIC_FITXA_NEGRA, posX, posY);
+			g = GRAFIC_FITXA_NEGRA;
 		else
-			GraphicManager::getInstance()->drawSprite(GRAFIC_DAMA_NEGRA, posX, posY);
-		break;
-	default:
+			g = GRAFIC_DAMA_NEGRA;
 		break;
 	}
+	GraphicManager::getInstance()->drawSprite(g, posX, posY);
 }

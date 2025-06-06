@@ -42,10 +42,9 @@ int main(int argc, const char* argv[])
     pantalla.show();
 
     Joc joc;
-    joc.escullModeJoc();
     joc.getTauler().inicialitza();
-    //joc.getTauler().visualitza(); 
-    pantalla.update(); 
+    pantalla.update();
+    //joc.escullModeJoc(pantalla);
     do 
     {
         // Captura tots els events de ratolí i teclat de l'ultim cicle
@@ -56,13 +55,12 @@ int main(int argc, const char* argv[])
         int mousePosY = Mouse_getY();
         
         bool final = joc.actualitza(mousePosX, mousePosY, mouseStatus);
-        //joc.getTauler().visualitza();
+        
         // Actualitza la pantalla
-        if ((mouseStatus) && (mousePosX >= (POS_X_TAULER + CASELLA_INICIAL_X)) &&
-            (mousePosY >= POS_Y_TAULER + CASELLA_INICIAL_Y) &&
-            (mousePosX <= (POS_X_TAULER + CASELLA_INICIAL_X + AMPLADA_CASELLA * NUM_COLS_TAULER)) &&
-            (mousePosY <= (POS_Y_TAULER + CASELLA_INICIAL_Y + ALCADA_CASELLA * NUM_FILES_TAULER)))
-            pantalla.update();
+      
+        pantalla.update(); 
+        
+       
 
     } while (!Keyboard_GetKeyTrg(KEYBOARD_ESCAPE));
     // Sortim del bucle si pressionem ESC

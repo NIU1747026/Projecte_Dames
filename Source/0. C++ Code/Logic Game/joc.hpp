@@ -37,7 +37,7 @@ class Joc
 {
 
 public:
-    Joc() { modeJoc = MODE_JOC_NONE; torn = COLOR_BLANC; };
+    Joc() { modeJoc = MODE_JOC_NORMAL; m_torn = COLOR_BLANC; };
     
     bool actualitza(int mousePosX, int mousePosY, bool mouseStatus); // cambiar para que use el visualitza de tauler HA DE RETORNAR TRUE AL ACABAR
     //I MOSTRAR EL JUGADOR QUE HA GUANYAT amb bool comprobaSiAcabat(); 
@@ -45,9 +45,9 @@ public:
     void inicialitza(ModeJoc mode, const string& nomFitxerTauler, const string& nomFitxerMoviments); //inicialitza tauler a través d'un fitxer, substituye joc.getTauler().inicialitza(); inicialitza segons mode joc
     void finalitza(const string& nomFitxer); //escribe en un fichero los movimientos hechos en la partida.
 
-    void escullModeJoc(); // bucle que no para hasta que escojas mode de joc  
-    bool comprobaSiAcabat(); //retorna true si la partida ha finalitzat (jugador sense fitxes) Si la partida ja s’ha acabat s’haurà de mostrar 
-    //per pantalla quin és el jugador que ha guanyat i retornar
+    void escullModeJoc(Screen p);// bucle que no para hasta que escojas mode de joc  
+    bool comprobaSiAcabat() { return false; } //retorna true si la partida ha finalitzat (jugador sense fitxes o no pot moure) Si la partida ja s’ha 
+    //acabat s’haurà de mostrar per pantalla quin és el jugador que ha guanyat i retornar
     //true com a resultat de la funció.
     void cambiaTorn(); //cambia el torn del jugador q està jugant després de mirar si la partida ha finalitzat amb el metode comprobaSiFinalitzat.
     void mostraModeITorn(); //mostra per pantalla el mode en el que s'està jugant i el torn actual
@@ -57,7 +57,7 @@ private:
 
     ModeJoc modeJoc;
     string nomFitxer;
-    ColorFitxa torn;
+    ColorFitxa m_torn;
 };
 
 #endif 
