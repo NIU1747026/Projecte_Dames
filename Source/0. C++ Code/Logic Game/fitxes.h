@@ -2,7 +2,7 @@
 	#define FITXES_H
 
 #include "moviment.h"
-
+#include <iostream>
 using namespace std;
 
 typedef enum
@@ -67,7 +67,6 @@ public:
 	const bool esMillorMoviment(const Moviment& mov) const; //retorna true si no hi ha cap millor moviment
 
 	int getNMovimentsValids() { return m_nMovimentsValids; }
-
 	void visualtzaMovValids(); //permite visualizar los mov validos de la fixa seleccionada
 
 private:

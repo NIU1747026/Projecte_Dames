@@ -20,6 +20,8 @@ void Fitxa::actualitzaMovimentsFitxa(Fitxa tauler[N_FILES][N_COLUMNES], const Po
 	Posicio posicioActual = origen;
 	Fitxa fitxa = getFitxa(tauler, origen);
 	FStatus estatFitxa;
+	m_nMovimentsValids = 0;
+	m_nPosicionsValides = 0;
 	do
 	{
 		movimentActual = movimentsPendents[--nMovPendents];

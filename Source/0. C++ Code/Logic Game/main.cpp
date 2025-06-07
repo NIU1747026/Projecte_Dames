@@ -43,7 +43,7 @@ int main(int argc, const char* argv[])
 
     Joc joc;
     joc.escullModeJoc(pantalla);
-    joc.inicialitza(joc.getMode(), "",""); //cuando tengamos fichero cambiar
+    joc.inicialitza(joc.getMode(), "","", pantalla); //cuando tengamos fichero cambiar
     do 
     {
         // Captura tots els events de ratolí i teclat de l'ultim cicle

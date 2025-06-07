@@ -9,6 +9,15 @@
 #include <iostream>
 #include <fstream>
 #include "GraphicManager.h"
+
+
+void Joc::dibuixaTauler()
+{
+	GraphicManager::getInstance()->drawSprite(GRAFIC_FONS, 0, 0);
+	GraphicManager::getInstance()->drawSprite(GRAFIC_TAULER, POS_X_TAULER, POS_Y_TAULER);
+	taulerJoc->visualitza();
+	mostraModeITorn();
+}
 bool Joc::comprobaSiAcabat()
 {
 	Fitxa f;
@@ -71,18 +80,15 @@ void Joc::escullModeJoc(Screen& p)
 }
 void Joc::cambiaTorn()
 {
-	if (!comprobaSiAcabat())
+	switch (m_torn)
 	{
-		switch (m_torn)
-		{
-		COLOR_BLANC:
-			m_torn = COLOR_NEGRE;
-			break;
-		COLOR_NEGRE:
-			m_torn = COLOR_BLANC;
-		default:
-			break;
-		}
+	case COLOR_BLANC:
+		m_torn = COLOR_NEGRE;
+		break;
+	case COLOR_NEGRE:
+		m_torn = COLOR_BLANC;
+	default:
+		break;
 	}
 }
 void Joc::mostraModeITorn()
@@ -124,7 +130,7 @@ quan s’ha fet la crida al mètode inicialitza.
 		break;
 	}
 }
-void Joc::inicialitza(ModeJoc mode, const string& nomFitxerTauler, const string& nomFitxerMoviments)
+void Joc::inicialitza(ModeJoc mode, const string& nomFitxerTauler, const string& nomFitxerMoviments, Screen& p)
 {
 	fstream fitxer(nomFitxer); 
 	switch (modeJoc)
@@ -140,7 +146,9 @@ void Joc::inicialitza(ModeJoc mode, const string& nomFitxerTauler, const string&
 		{
 			taulerJoc->inicialitza(nomFitxerTauler);
 		}
+		dibuixaTauler();
 		nomFitxer = nomFitxerMoviments; 
+		p.update();
 		break;
 	case MODE_JOC_REPLAY:
 		m_cua.inicialtzaJocReplay(nomFitxerMoviments);
@@ -150,32 +158,48 @@ void Joc::inicialitza(ModeJoc mode, const string& nomFitxerTauler, const string&
 bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus, Screen& p) 
 {
 	int fila, columna;
+	Posicio pos; 
+	Moviment m; 
 	switch (modeJoc)
 	{
 	case MODE_JOC_NORMAL:
-		
-		GraphicManager::getInstance()->drawSprite(GRAFIC_FONS, 0, 0);
-		GraphicManager::getInstance()->drawSprite(GRAFIC_TAULER, POS_X_TAULER, POS_Y_TAULER);
-		taulerJoc->visualitza();
-		mostraModeITorn();
 		columna = (mousePosX - POS_X_TAULER - CASELLA_INICIAL_X) / AMPLADA_CASELLA;
 		fila = (mousePosY - POS_Y_TAULER - CASELLA_INICIAL_Y) / ALCADA_CASELLA;
-		p.update();
-		if (mouseStatus && taulerJoc->getFitxaPos(fila, columna).getColor() == m_torn)
+		static bool click;
+		static int x, y;
+		if (mouseStatus && taulerJoc->getFitxaPos(fila,columna).getTipus() != TIPUS_EMPTY && taulerJoc->getFitxaPos(fila, columna).getColor() == m_torn)
 		{
-			GraphicManager::getInstance()->drawSprite(GRAFIC_FONS, 0, 0);
-			GraphicManager::getInstance()->drawSprite(GRAFIC_TAULER, POS_X_TAULER, POS_Y_TAULER);
-			taulerJoc->visualitza();
+			dibuixaTauler();
 			taulerJoc->visualtzaMovValids(fila, columna);
-			mostraModeITorn();
 			p.update();
+			click = true;
+			x = fila;
+			y = columna;
 		}
-		p.update();
-		/*Si s’ha fet clic amb el ratolí a sobre d’una fitxa del color del jugador que té el torn, aquesta fitxa ha de
-quedar seleccionada com la fitxa que es vol moure i s’hauran de recuperar els moviments vàlids que pot
-fer la fitxa (utilitzant els mètodes de la classe Tauler ja implementats a la primera part del projecte).
-Quan es visualitzi el tauler i les fitxes, s’hauran de mostrar les posicions dels moviments vàlids
-superposant a cada casella un requadre transparent verd (gràfic GRAFIC_POSICIO_VALIDA)
+		if (mouseStatus && click == true)
+		{
+			pos.setPos(fila, columna);
+			if (click == true && taulerJoc->getFitxaPos(x, y).movimentEsValid(pos, m))
+			{
+				Posicio origen(x, y);
+				taulerJoc->mouFitxa(origen, pos);
+				click = false;
+				dibuixaTauler();
+				p.update();
+				m_cua.guardaMov(origen, pos);
+				if (!comprobaSiAcabat())
+				{
+					cambiaTorn();
+				}
+			}
+			if (taulerJoc->getFitxaPos(fila, columna).getColor() != m_torn)
+			{
+				dibuixaTauler();
+				p.update();
+				click = false;
+			}
+		}
+		/*
 
 Si s’ha fet clic amb el ratolí a una de les posicions dels moviments vàlids de la peça seleccionada s’haurà
 d’executar el moviment de la fitxa a aquesta nova posició (utilitzant el mètode mouFitxa de la classe
@@ -186,7 +210,7 @@ fitxes i, si no s’acaba, canviar el jugador que té el torn.
 Si no s’interactua amb el ratolí o es fa clic a sobre de qualsevol altra posició de pantalla, no s’ha de fer res,
 simplement visualitzar el tauler, les fitxes i les posicions dels moviments vàlids (si hi ha alguna fitxa
 seleccionada)
-*/
+*/	
 		break;
 	case MODE_JOC_REPLAY:
 		/*Si s’ha fet clic amb el ratolí a sobre del tauler de joc s’ha de recuperar i eliminar el primer moviment de la
