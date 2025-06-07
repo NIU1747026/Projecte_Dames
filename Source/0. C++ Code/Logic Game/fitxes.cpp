@@ -69,3 +69,10 @@ void Fitxa::visualitza(int x, int y)
 	}
 	GraphicManager::getInstance()->drawSprite(g, posX, posY);
 }
+void Fitxa::visualtzaMovValids()
+{
+	for (int i = 0; i < m_nMovimentsValids; i++)
+	{
+		m_movimentValids[i].visualtzaRecorregut();
+	}
+}

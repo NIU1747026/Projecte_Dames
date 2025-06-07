@@ -53,11 +53,11 @@ int main(int argc, const char* argv[])
         int mousePosX = Mouse_getX();
         int mousePosY = Mouse_getY();
         
-        bool final = joc.actualitza(mousePosX, mousePosY, mouseStatus);
+        bool final = joc.actualitza(mousePosX, mousePosY, mouseStatus, pantalla);
         
         // Actualitza la pantalla
       
-        pantalla.update(); 
+       
         
        
 

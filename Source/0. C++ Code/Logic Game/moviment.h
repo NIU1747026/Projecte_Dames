@@ -31,6 +31,8 @@ public:
 	void afegeixPos(Posicio& pos) { m_recorregut[m_nRecorregut] = pos; m_nRecorregut++; };
 	const bool operator>(const Moviment& mov) const; //retorna true si el primer moviment es millor que l'altre
 
+	void visualtzaRecorregut(); //permite visualizar los mov validos de la fixa seleccionada
+
 private:
 	int m_nFitxesMenjades;
 	int m_nDamesMenjades;

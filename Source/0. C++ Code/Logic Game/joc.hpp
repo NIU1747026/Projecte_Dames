@@ -24,10 +24,10 @@ class CuaMoviments
 {
 public:
     CuaMoviments() {}
-    void inicialtzaJocReplay(const string& nomFitxer) {} //Al principi de la partida s’inicialitza amb tots els moviments guardats al fitxer indicat.
-    void getSeguentMov(Posicio pos[2]); // guarda en la array [posInicio, posFinal], elimina el movimiento returneado
-    void finalitzaJocNormal(const string& nomFitxer); //guarda al fitxer tots els mov de m_cuaMov i els va eliminants conforme els guarda
-    void guardaMov(const Posicio& posInicial, const Posicio& posFinal); //guarda en la cola 1ro la pos inicial y luego la final
+    void inicialtzaJocReplay(const string& nomFitxer) {} //MODE REPLAY Al principi de la partida s’inicialitza amb tots els moviments guardats al fitxer indicat.
+    void getSeguentMov(Posicio pos[2]); // MODE REPLAY guarda en la array [posInicio, posFinal], elimina el movimiento returneado
+    void finalitzaJocNormal(const string& nomFitxer); //MODE NORMAL guarda al fitxer tots els mov de m_cuaMov i els va eliminants conforme els guarda
+    void guardaMov(const Posicio& posInicial, const Posicio& posFinal); //MODE NORMAL guarda en la cola 1ro la pos inicial y luego la final
 private:
     queue<Posicio> m_cuaPosInicial;
     queue<Posicio> m_cuaPosFinal;// se guarda de dos en dos los mov, primero pos inicial, luego pos final
@@ -37,9 +37,9 @@ class Joc
 {
 
 public:
-    Joc() { modeJoc = MODE_JOC_NONE; m_torn = COLOR_BLANC; taulerJoc = new Tauler; };
+    Joc() { modeJoc = MODE_JOC_NONE; m_torn = COLOR_BLANC; taulerJoc = new Tauler;};
     
-    bool actualitza(int mousePosX, int mousePosY, bool mouseStatus); // cambiar para que use el visualitza de tauler HA DE RETORNAR TRUE AL ACABAR
+    bool actualitza(int mousePosX, int mousePosY, bool mouseStatus, Screen& p); // cambiar para que use el visualitza de tauler HA DE RETORNAR TRUE AL ACABAR
     //I MOSTRAR EL JUGADOR QUE HA GUANYAT amb bool comprobaSiAcabat(); 
     Tauler& getTauler() { return* taulerJoc; }
     void inicialitza(ModeJoc mode, const string& nomFitxerTauler, const string& nomFitxerMoviments); //inicialitza tauler a través d'un fitxer, substituye joc.getTauler().inicialitza(); inicialitza segons mode joc

@@ -147,8 +147,9 @@ void Joc::inicialitza(ModeJoc mode, const string& nomFitxerTauler, const string&
 		break;
 	}
 }
-bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus) 
+bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus, Screen& p) 
 {
+	int fila, columna;
 	switch (modeJoc)
 	{
 	case MODE_JOC_NORMAL:
@@ -156,6 +157,26 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus)
 		GraphicManager::getInstance()->drawSprite(GRAFIC_TAULER, POS_X_TAULER, POS_Y_TAULER);
 		taulerJoc->visualitza();
 		mostraModeITorn();
+		p.update(); 
+		
+		fila = (mousePosY - POS_Y_TAULER) / ALCADA_CASELLA; 
+		columna = (mousePosX - POS_X_TAULER) / AMPLADA_CASELLA; 
+		if (mouseStatus && taulerJoc->getFitxaPos(fila, columna).getColor() == m_torn)
+		{
+			
+			if (taulerJoc->getFitxaPos(fila, columna).getNMovimentsValids() == 0)
+				cout << "perro mojado";
+			taulerJoc->actualitzaMovimentsValids();
+			taulerJoc->visualtzaMovValids(fila, columna);
+			for (int i = 0; i < N_FILES; i++)
+			{
+				for (int y = 0; y < N_COLUMNES; y++)
+				{
+					cout << taulerJoc->getFitxaPos(i, y).getTipus();
+				}
+			}
+		}
+		p.update();
 		/*Si s’ha fet clic amb el ratolí a sobre d’una fitxa del color del jugador que té el torn, aquesta fitxa ha de
 quedar seleccionada com la fitxa que es vol moure i s’hauran de recuperar els moviments vàlids que pot
 fer la fitxa (utilitzant els mètodes de la classe Tauler ja implementats a la primera part del projecte).

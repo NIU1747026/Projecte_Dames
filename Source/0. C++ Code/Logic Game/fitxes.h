@@ -67,6 +67,9 @@ public:
 	const bool esMillorMoviment(const Moviment& mov) const; //retorna true si no hi ha cap millor moviment
 
 	int getNMovimentsValids() { return m_nMovimentsValids; }
+
+	void visualtzaMovValids(); //permite visualizar los mov validos de la fixa seleccionada
+
 private:
 	void insertaPos(const Posicio& pos); // inserta la pos a posicions valides, sempre que no estigui ja posada
 	void getPosicionsValides(Fitxa tauler[N_FILES][N_COLUMNES], const Posicio& origen, const Fitxa& fitxa, FStatus& status, Posicio posicionsPossibles[MAX_POSICIONS], int& nPossibles, FStatus arrStatus[MAX_POSICIONS], Posicio menjada[MAX_POSICIONS], Moviment& movimentActual); //Donats una posicio d'origen i si pot menjar, retorna a l'array les posicions a les que pot anar junt amb un array on a la posició corresponent a la de la posicio possible diu si pot seguir menjant o no. npossibles s'inicialitza a 0.
