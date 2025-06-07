@@ -131,7 +131,7 @@ void Joc::inicialitza(ModeJoc mode, const string& nomFitxerTauler, const string&
 	{
 	case MODE_JOC_NORMAL:
 		taulerJoc->inicialitza(); //cuando tengamos fichero se quita
-		
+		taulerJoc->actualitzaMovimentsValids(); 
 		if (fitxer.eof())
 		{
 			taulerJoc->inicialitza(); 
@@ -153,28 +153,22 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus, Screen& p)
 	switch (modeJoc)
 	{
 	case MODE_JOC_NORMAL:
+		
 		GraphicManager::getInstance()->drawSprite(GRAFIC_FONS, 0, 0);
 		GraphicManager::getInstance()->drawSprite(GRAFIC_TAULER, POS_X_TAULER, POS_Y_TAULER);
 		taulerJoc->visualitza();
 		mostraModeITorn();
-		p.update(); 
-		
-		fila = (mousePosY - POS_Y_TAULER) / ALCADA_CASELLA; 
-		columna = (mousePosX - POS_X_TAULER) / AMPLADA_CASELLA; 
+		columna = (mousePosX - POS_X_TAULER - CASELLA_INICIAL_X) / AMPLADA_CASELLA;
+		fila = (mousePosY - POS_Y_TAULER - CASELLA_INICIAL_Y) / ALCADA_CASELLA;
+		p.update();
 		if (mouseStatus && taulerJoc->getFitxaPos(fila, columna).getColor() == m_torn)
 		{
-			
-			if (taulerJoc->getFitxaPos(fila, columna).getNMovimentsValids() == 0)
-				cout << "perro mojado";
-			taulerJoc->actualitzaMovimentsValids();
+			GraphicManager::getInstance()->drawSprite(GRAFIC_FONS, 0, 0);
+			GraphicManager::getInstance()->drawSprite(GRAFIC_TAULER, POS_X_TAULER, POS_Y_TAULER);
+			taulerJoc->visualitza();
 			taulerJoc->visualtzaMovValids(fila, columna);
-			for (int i = 0; i < N_FILES; i++)
-			{
-				for (int y = 0; y < N_COLUMNES; y++)
-				{
-					cout << taulerJoc->getFitxaPos(i, y).getTipus();
-				}
-			}
+			mostraModeITorn();
+			p.update();
 		}
 		p.update();
 		/*Si s’ha fet clic amb el ratolí a sobre d’una fitxa del color del jugador que té el torn, aquesta fitxa ha de
