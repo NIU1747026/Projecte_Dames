@@ -78,6 +78,9 @@ string GraphicManager::getImagePath(IMAGE_NAME name){
         case GRAFIC_DAMA_NEGRA:
             path = "data/Fitxes/dama_negra.png";
             break;
+        case GRAFIC_PEGATINA:
+            path = "data/GUI/normal.png";
+            break;
         default:
             path = "";
             break;

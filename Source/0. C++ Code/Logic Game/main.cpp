@@ -43,8 +43,7 @@ int main(int argc, const char* argv[])
 
     Joc joc;
     bool final;
-    joc.escullModeJoc(pantalla);
-    joc.inicialitza(joc.getMode(), "tauler_inicial_1", "guarda", pantalla); //cuando tengamos fichero cambiar
+    //cuando tengamos fichero cambiar
     do 
     {
         // Captura tots els events de ratolí i teclat de l'ultim cicle
@@ -53,7 +52,11 @@ int main(int argc, const char* argv[])
         bool mouseStatus = Mouse_getBtnLeft();
         int mousePosX = Mouse_getX();
         int mousePosY = Mouse_getY();
-        
+        if (joc.getMode() == MODE_JOC_NONE)
+        {
+            joc.escullModeJoc(pantalla, mousePosX, mousePosY, mouseStatus);
+            joc.inicialitza(joc.getMode(), "tauler_inicial_1", "guarda", pantalla);
+        }
         bool final = joc.actualitza(mousePosX, mousePosY, mouseStatus, pantalla);
         
         // Actualitza la pantalla

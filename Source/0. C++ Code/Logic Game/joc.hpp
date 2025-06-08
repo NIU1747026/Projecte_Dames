@@ -9,17 +9,6 @@
 
 using namespace std;
 
-class Node
-{
-public:
-    void setPosicioInicial(const string& inici) { m_posInici = inici; }
-    void setPosicioFinal(const string& final) { m_posFinal = final; }
-    string getPosInicial() { return m_posInici; }
-    string getPosFinal() { return m_posFinal; }
-private:
-    string m_posInici;
-    string m_posFinal;
-};
 class CuaMoviments
 {
 public:
@@ -29,6 +18,7 @@ public:
     void finalitzaJocNormal(const string& nomFitxer); //MODE NORMAL guarda al fitxer tots els mov de m_cuaMov i els va eliminants conforme els guarda
     //SE TIENEN QUE PASSAR AL TOSTRING PRIMERO
     void guardaMov(const Posicio& posInicial, const Posicio& posFinal); //MODE NORMAL guarda en la cola 1ro la pos inicial y luego la final
+    bool noMesMoviments() { return m_cuaPosFinal.empty(); }
 private:
     queue<Posicio> m_cuaPosInicial;
     queue<Posicio> m_cuaPosFinal;// se guarda de dos en dos los mov, primero pos inicial, luego pos final
@@ -46,7 +36,7 @@ public:
     void inicialitza(ModeJoc mode, const string& nomFitxerTauler, const string& nomFitxerMoviments, Screen& p); //inicialitza tauler a través d'un fitxer, substituye joc.getTauler().inicialitza(); inicialitza segons mode joc
     void finalitza(const string& nomFitxer); //escribe en un fichero los movimientos hechos en la partida.
 
-    void escullModeJoc(Screen& p);// bucle que no para hasta que escojas mode de joc  
+    void escullModeJoc(Screen& p, int mousePosX, int mousePosY, bool mouseStatus);// bucle que no para hasta que escojas mode de joc  
     bool comprobaSiAcabat(); //retorna true si la partida ha finalitzat (jugador sense fitxes o no pot moure) Si la partida ja s’ha  
     //acabat s’haurà de mostrar per pantalla quin és el jugador que ha guanyat i retornar
     //true com a resultat de la funció.
@@ -56,6 +46,8 @@ public:
     void dibuixaTauler();
 
     ModeJoc getMode() { return modeJoc; }
+    string getFitxer() { return nomFitxer; }
+    string getGuanyador() { if (m_guanyador == COLOR_BLANC) { return "Blanques"; } else { return "Negres"; } }
 private:
     Tauler* taulerJoc;
     CuaMoviments m_cua;

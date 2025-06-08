@@ -19,6 +19,11 @@ const int NUM_FILES_TAULER = 8;
 const int TAMANY_PANTALLA_X = 750;
 const int TAMANY_PANTALLA_Y = 850;
 
+const int TAMANY_BOTO_x = 200;
+const int TAMANY_BOTO_y = 100;
+
+const int POS_X_BOTO = 187;
+
 typedef enum 
 {
     MODE_JOC_NORMAL,
