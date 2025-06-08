@@ -42,8 +42,9 @@ int main(int argc, const char* argv[])
     pantalla.show();
 
     Joc joc;
+    bool final;
     joc.escullModeJoc(pantalla);
-    joc.inicialitza(joc.getMode(), "","", pantalla); //cuando tengamos fichero cambiar
+    joc.inicialitza(joc.getMode(), "tauler_inicial_1", "guarda", pantalla); //cuando tengamos fichero cambiar
     do 
     {
         // Captura tots els events de ratolí i teclat de l'ultim cicle
@@ -57,13 +58,22 @@ int main(int argc, const char* argv[])
         
         // Actualitza la pantalla
       
-       
-        
-       
-
+        if (final == true)
+        {
+            while (!Keyboard_GetKeyTrg(KEYBOARD_ESCAPE))
+            {
+                GraphicManager::getInstance()->drawSprite(GRAFIC_FONS, 0, 0);
+                int posTextX = POS_X_TAULER;
+                int posTextY = POS_Y_TAULER;
+                string msg = "WINNER WINNER CHICKEN DINNER: " + joc.getGuanyador() + "!!";
+                GraphicManager::getInstance()->drawFont(FONT_WHITE_30, posTextX, posTextY, 0.8, msg);
+                pantalla.update();
+                joc.finalitza(joc.getFitxer());
+            }
+        }
     } while (!Keyboard_GetKeyTrg(KEYBOARD_ESCAPE));
     // Sortim del bucle si pressionem ESC
-
+ 
     //Instruccio necesaria per alliberar els recursos de la llibreria 
     SDL_Quit();
     return 0;

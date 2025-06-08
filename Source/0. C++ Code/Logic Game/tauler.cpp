@@ -17,6 +17,7 @@ void Tauler::inicialitza(const string& nomFitxer)
 	fitxer.open(nomFitxer);
 	
 	if (!fitxer.is_open())
+		cout << "perro mojado ";
 		return;
 	
 	while (!fitxer.eof())
