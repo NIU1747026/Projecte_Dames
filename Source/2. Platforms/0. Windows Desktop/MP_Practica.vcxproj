@@ -159,6 +159,7 @@
     <ClCompile Include="..\..\0. C++ Code\Graphic Lib\stb_vorbis.cpp" />
     <ClCompile Include="..\..\0. C++ Code\Graphic Lib\video.cpp" />
     <ClCompile Include="..\..\0. C++ Code\Logic Game\actualitzaMovs.cpp" />
+    <ClCompile Include="..\..\0. C++ Code\Logic Game\cua.cpp" />
     <ClCompile Include="..\..\0. C++ Code\Logic Game\fitxes.cpp" />
     <ClCompile Include="..\..\0. C++ Code\Logic Game\GraphicManager.cpp" />
     <ClCompile Include="..\..\0. C++ Code\Logic Game\joc.cpp" />
