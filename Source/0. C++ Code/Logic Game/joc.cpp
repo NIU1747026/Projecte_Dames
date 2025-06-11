@@ -64,20 +64,18 @@ void Joc::escullModeJoc(Screen& p, int mousePosX, int mousePosY, bool mouseStatu
 		string msg = "Escull mode joc:";
 		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, posTextX, posTextY, 0.8, msg);
 		msg = " 2- MODE JOC REPLAY";
-		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, posTextX, posTextY + 200, 0.8, msg);  
-		GraphicManager::getInstance()->drawSprite(GRAFIC_PEGATINA, POS_X_BOTO + 23, posTextY + 100); 
+		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, POS_X_BOTO, posTextY + 200, 0.8, msg);  
+		msg = " 1- MODE JOC NORMAL";
+		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, POS_X_BOTO, posTextY + 100, 0.8, msg);
 		p.update();
 		if (mouseStatus && mousePosX >= POS_X_BOTO && mousePosX <= posTextY+100 + TAMANY_BOTO_x && mousePosY >= posTextY + 100 && mousePosY <= posTextY + 100 + TAMANY_BOTO_y)
 		{
 			modeJoc = MODE_JOC_NORMAL; 
 		}
-		/*int mode;
-		cin >> mode;
-		if (mode == 2)
+		if (mouseStatus && mousePosX >= POS_X_BOTO && mousePosX <= posTextY + 200 + TAMANY_BOTO_x && mousePosY >= posTextY + 200 && mousePosY <= posTextY + 200 + TAMANY_BOTO_y)
+		{
 			modeJoc = MODE_JOC_REPLAY;
-		else
-			modeJoc = MODE_JOC_NORMAL;
-		*/
+		}
 		
 }
 void Joc::cambiaTorn()
