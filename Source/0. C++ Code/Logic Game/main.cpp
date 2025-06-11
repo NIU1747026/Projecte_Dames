@@ -43,6 +43,7 @@ int main(int argc, const char* argv[])
 
     Joc joc;
     bool final = false;
+    bool act = false;
     //cuando tengamos fichero cambiar
     do 
     {
@@ -60,7 +61,7 @@ int main(int argc, const char* argv[])
         
         // Actualitza la pantalla
         if (!final)
-            final = joc.actualitza(mousePosX, mousePosY, mouseStatus, pantalla);
+            final = joc.actualitza(mousePosX, mousePosY, mouseStatus, pantalla, act);
         else
         {
             GraphicManager::getInstance()->drawSprite(GRAFIC_FONS, 0, 0);

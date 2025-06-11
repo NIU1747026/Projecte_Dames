@@ -1,1 +1,15 @@
-﻿  MP_Practica.vcxproj -> C:\Users\lucas\Desktop\MP-Curs-24-25\Projecte_Dames\Source\2. Platforms\0. Windows Desktop\Program\MP_Practica.exe
+﻿  joc.cpp
+C:\Users\lucas\Desktop\MP-Curs-24-25\Projecte_Dames\Source\0. C++ Code\Logic Game\joc.cpp(65,78): warning C4305: 'argumento': truncamiento de 'double' a 'float'
+C:\Users\lucas\Desktop\MP-Curs-24-25\Projecte_Dames\Source\0. C++ Code\Logic Game\joc.cpp(65,68): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\lucas\Desktop\MP-Curs-24-25\Projecte_Dames\Source\0. C++ Code\Logic Game\joc.cpp(65,58): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\lucas\Desktop\MP-Curs-24-25\Projecte_Dames\Source\0. C++ Code\Logic Game\joc.cpp(67,86): warning C4305: 'argumento': truncamiento de 'double' a 'float'
+C:\Users\lucas\Desktop\MP-Curs-24-25\Projecte_Dames\Source\0. C++ Code\Logic Game\joc.cpp(67,79): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\lucas\Desktop\MP-Curs-24-25\Projecte_Dames\Source\0. C++ Code\Logic Game\joc.cpp(69,86): warning C4305: 'argumento': truncamiento de 'double' a 'float'
+C:\Users\lucas\Desktop\MP-Curs-24-25\Projecte_Dames\Source\0. C++ Code\Logic Game\joc.cpp(69,79): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\lucas\Desktop\MP-Curs-24-25\Projecte_Dames\Source\0. C++ Code\Logic Game\joc.cpp(119,77): warning C4305: 'argumento': truncamiento de 'double' a 'float'
+C:\Users\lucas\Desktop\MP-Curs-24-25\Projecte_Dames\Source\0. C++ Code\Logic Game\joc.cpp(119,67): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\lucas\Desktop\MP-Curs-24-25\Projecte_Dames\Source\0. C++ Code\Logic Game\joc.cpp(119,57): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\lucas\Desktop\MP-Curs-24-25\Projecte_Dames\Source\0. C++ Code\Logic Game\joc.cpp(226,79): warning C4305: 'argumento': truncamiento de 'double' a 'float'
+C:\Users\lucas\Desktop\MP-Curs-24-25\Projecte_Dames\Source\0. C++ Code\Logic Game\joc.cpp(226,69): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\lucas\Desktop\MP-Curs-24-25\Projecte_Dames\Source\0. C++ Code\Logic Game\joc.cpp(226,59): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+  MP_Practica.vcxproj -> C:\Users\lucas\Desktop\MP-Curs-24-25\Projecte_Dames\Source\2. Platforms\0. Windows Desktop\Program\MP_Practica.exe

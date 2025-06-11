@@ -30,7 +30,7 @@ class Joc
 public:
     Joc() { modeJoc = MODE_JOC_NONE; m_torn = COLOR_BLANC; taulerJoc = new Tauler;};
     
-    bool actualitza(int mousePosX, int mousePosY, bool mouseStatus, Screen& p); // cambiar para que use el visualitza de tauler HA DE RETORNAR TRUE AL ACABAR
+    bool actualitza(int mousePosX, int mousePosY, bool mouseStatus, Screen& p, bool& act); // cambiar para que use el visualitza de tauler HA DE RETORNAR TRUE AL ACABAR
     //I MOSTRAR EL JUGADOR QUE HA GUANYAT amb bool comprobaSiAcabat(); 
     Tauler& getTauler() { return* taulerJoc; }
     void inicialitza(ModeJoc mode, const string& nomFitxerTauler, const string& nomFitxerMoviments, Screen& p); //inicialitza tauler a través d'un fitxer, substituye joc.getTauler().inicialitza(); inicialitza segons mode joc

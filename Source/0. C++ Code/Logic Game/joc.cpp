@@ -153,7 +153,7 @@ void Joc::inicialitza(ModeJoc mode, const string& nomFitxerTauler, const string&
 		break;
 	}
 }
-bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus, Screen& p) 
+bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus, Screen& p, bool &act) 
 {
 	int fila, columna;
 	Posicio pos; 
@@ -205,23 +205,27 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus, Screen& p)
 	case MODE_JOC_REPLAY:
 		//recuperar i eliminar de cua mov + moure la fitxa
 		dibuixaTauler();
-		if ((mouseStatus) && (mousePosX >= (POS_X_TAULER + CASELLA_INICIAL_X)) &&
-			(mousePosY >= POS_Y_TAULER + CASELLA_INICIAL_Y) &&
-			(mousePosX <= (POS_X_TAULER + CASELLA_INICIAL_X + AMPLADA_CASELLA * NUM_COLS_TAULER)) &&
-			(mousePosY <= (POS_Y_TAULER + CASELLA_INICIAL_Y + ALCADA_CASELLA * NUM_FILES_TAULER)))
-			if (m_cua.noMesMoviments())
-			{
-				int posTextX = POS_X_TAULER;
-				int posTextY = POS_Y_TAULER + (ALCADA_CASELLA * NUM_FILES_TAULER) + 200;
-				string msg = "NO HI HA MES MOVIMENTS!!";
-				GraphicManager::getInstance()->drawFont(FONT_WHITE_30, posTextX, posTextY, 0.8, msg);
-			}
-			else
+		if (mouseStatus)
+		{
+			if (!m_cua.noMesMoviments() && act)
 			{
 				Posicio next[2];
 				m_cua.getSeguentMov(next);
 				taulerJoc->mouFitxa(next[0], next[1]);
+				act = false;
 			}
+		}
+		else
+			act = true;
+
+		if (m_cua.noMesMoviments())
+		{
+			int posTextX = POS_X_TAULER;
+			int posTextY = POS_Y_TAULER + (ALCADA_CASELLA * NUM_FILES_TAULER) + 200;
+			string msg = "NO HI HA MES MOVIMENTS!!";
+			GraphicManager::getInstance()->drawFont(FONT_WHITE_30, posTextX, posTextY, 0.8, msg);
+		}
+
 		p.update();
 		break;
 	}
