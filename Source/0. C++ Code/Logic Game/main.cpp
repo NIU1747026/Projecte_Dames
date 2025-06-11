@@ -42,7 +42,7 @@ int main(int argc, const char* argv[])
     pantalla.show();
 
     Joc joc;
-    bool final;
+    bool final = false;
     //cuando tengamos fichero cambiar
     do 
     {
@@ -55,27 +55,24 @@ int main(int argc, const char* argv[])
         if (joc.getMode() == MODE_JOC_NONE)
         {
             joc.escullModeJoc(pantalla, mousePosX, mousePosY, mouseStatus);
-            joc.inicialitza(joc.getMode(), "tauler_inicial_1", "guarda", pantalla);
+            joc.inicialitza(joc.getMode(), "tauler_inicial_1", "games/joc.txt", pantalla);
         }
-        bool final = joc.actualitza(mousePosX, mousePosY, mouseStatus, pantalla);
         
         // Actualitza la pantalla
-      
-        if (final == true)
+        if (!final)
+            final = joc.actualitza(mousePosX, mousePosY, mouseStatus, pantalla);
+        else
         {
-            while (!Keyboard_GetKeyTrg(KEYBOARD_ESCAPE))
-            {
-                GraphicManager::getInstance()->drawSprite(GRAFIC_FONS, 0, 0);
-                int posTextX = POS_X_TAULER;
-                int posTextY = POS_Y_TAULER;
-                string msg = "WINNER WINNER CHICKEN DINNER: " + joc.getGuanyador() + "!!";
-                GraphicManager::getInstance()->drawFont(FONT_WHITE_30, posTextX, posTextY, 0.8, msg);
-                pantalla.update();
-                joc.finalitza(joc.getFitxer());
-            }
+            GraphicManager::getInstance()->drawSprite(GRAFIC_FONS, 0, 0);
+            int posTextX = POS_X_TAULER;
+            int posTextY = POS_Y_TAULER;
+            string msg = "WINNER WINNER CHICKEN DINNER: " + joc.getGuanyador() + "!!";
+            GraphicManager::getInstance()->drawFont(FONT_WHITE_30, posTextX, posTextY, 0.8, msg);
+            pantalla.update();
         }
     } while (!Keyboard_GetKeyTrg(KEYBOARD_ESCAPE));
     // Sortim del bucle si pressionem ESC
+    joc.finalitza(joc.getFitxer());
  
     //Instruccio necesaria per alliberar els recursos de la llibreria 
     SDL_Quit();

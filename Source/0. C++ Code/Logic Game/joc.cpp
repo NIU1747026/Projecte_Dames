@@ -68,14 +68,15 @@ void Joc::escullModeJoc(Screen& p, int mousePosX, int mousePosY, bool mouseStatu
 		msg = " 1- MODE JOC NORMAL";
 		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, POS_X_BOTO, posTextY + 100, 0.8, msg);
 		p.update();
-		if (mouseStatus && mousePosX >= POS_X_BOTO && mousePosX <= posTextY+100 + TAMANY_BOTO_x && mousePosY >= posTextY + 100 && mousePosY <= posTextY + 100 + TAMANY_BOTO_y)
+		if (mouseStatus && mousePosX >= POS_X_BOTO && mousePosX <= posTextY + 100 + TAMANY_BOTO_x && mousePosY >= posTextY + 100 && mousePosY <= posTextY + 100 + TAMANY_BOTO_y)
 		{
-			modeJoc = MODE_JOC_NORMAL; 
+			modeJoc = MODE_JOC_NORMAL;
 		}
 		if (mouseStatus && mousePosX >= POS_X_BOTO && mousePosX <= posTextY + 200 + TAMANY_BOTO_x && mousePosY >= posTextY + 200 && mousePosY <= posTextY + 200 + TAMANY_BOTO_y)
 		{
 			modeJoc = MODE_JOC_REPLAY;
 		}
+		
 		
 }
 void Joc::cambiaTorn()
@@ -144,6 +145,11 @@ void Joc::inicialitza(ModeJoc mode, const string& nomFitxerTauler, const string&
 		break;
 	case MODE_JOC_REPLAY:
 		m_cua.inicialtzaJocReplay(nomFitxerMoviments);
+		taulerJoc->inicialitza(); //cuando tengamos fichero se quita
+		taulerJoc->actualitzaMovimentsValids();
+		dibuixaTauler();
+		nomFitxer = nomFitxerMoviments;
+		p.update();
 		break;
 	}
 }
@@ -197,34 +203,26 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus, Screen& p)
 		}
 		break;
 	case MODE_JOC_REPLAY:
+		//recuperar i eliminar de cua mov + moure la fitxa
+		dibuixaTauler();
 		if ((mouseStatus) && (mousePosX >= (POS_X_TAULER + CASELLA_INICIAL_X)) &&
 			(mousePosY >= POS_Y_TAULER + CASELLA_INICIAL_Y) &&
 			(mousePosX <= (POS_X_TAULER + CASELLA_INICIAL_X + AMPLADA_CASELLA * NUM_COLS_TAULER)) &&
 			(mousePosY <= (POS_Y_TAULER + CASELLA_INICIAL_Y + ALCADA_CASELLA * NUM_FILES_TAULER)))
-		{
-			//recuperar i eliminar de cua mov + moure la fitxa
-			dibuixaTauler();
-			p.update();
-			if (!comprobaSiAcabat())
-			{
-				cambiaTorn();
-			}
-			else
-			{
-				return true;
-			}
 			if (m_cua.noMesMoviments())
 			{
 				int posTextX = POS_X_TAULER;
 				int posTextY = POS_Y_TAULER + (ALCADA_CASELLA * NUM_FILES_TAULER) + 200;
-				string msg = "NO HI HA MÉS MOVIMENTS!!";
+				string msg = "NO HI HA MES MOVIMENTS!!";
 				GraphicManager::getInstance()->drawFont(FONT_WHITE_30, posTextX, posTextY, 0.8, msg);
 			}
-		}
-		else
-		{
-			return false;
-		}
+			else
+			{
+				Posicio next[2];
+				m_cua.getSeguentMov(next);
+				taulerJoc->mouFitxa(next[0], next[1]);
+			}
+		p.update();
 		break;
 	}
 	return false;
