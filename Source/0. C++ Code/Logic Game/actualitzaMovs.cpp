@@ -114,6 +114,7 @@ void Fitxa::getPosicionsValides(Fitxa tauler[N_FILES][N_COLUMNES], const Posicio
 			if (getFitxa(tauler, check1).getTipus() == TIPUS_EMPTY && status.getPotMoure())
 			{
 				posicionsPossibles[nPossibles] = check1;
+				menjada[nPossibles] = c[0];
 				if (tipus == TIPUS_DAMA)
 					arrStatus[nPossibles++].init(true, true, dirs[i]);
 				else

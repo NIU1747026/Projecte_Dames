@@ -141,4 +141,9 @@
       <UniqueIdentifier>{cbe27357-35d7-40c4-ae4b-908075278f4d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\1. Resources\data\Games\moviments.txt">
+      <Filter>Logic Game\Header files</Filter>
+    </Text>
+  </ItemGroup>
 </Project>

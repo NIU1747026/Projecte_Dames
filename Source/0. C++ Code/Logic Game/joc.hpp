@@ -28,7 +28,7 @@ class Joc
 {
 
 public:
-    Joc() { modeJoc = MODE_JOC_NONE; m_torn = COLOR_BLANC; taulerJoc = new Tauler;};
+    Joc() { m_modeJoc = MODE_JOC_NONE; m_torn = COLOR_BLANC; taulerJoc = new Tauler;};
     
     bool actualitza(int mousePosX, int mousePosY, bool mouseStatus, Screen& p, bool& act); // cambiar para que use el visualitza de tauler HA DE RETORNAR TRUE AL ACABAR
     //I MOSTRAR EL JUGADOR QUE HA GUANYAT amb bool comprobaSiAcabat(); 
@@ -45,15 +45,15 @@ public:
 
     void dibuixaTauler();
 
-    ModeJoc getMode() { return modeJoc; }
-    string getFitxer() { return nomFitxer; }
+    ModeJoc getMode() { return m_modeJoc; }
+    string getFitxer() { return m_nomFitxer; }
     string getGuanyador() { if (m_guanyador == COLOR_BLANC) { return "Blanques"; } else { return "Negres"; } }
 private:
     Tauler* taulerJoc;
     CuaMoviments m_cua;
 
-    ModeJoc modeJoc;
-    string nomFitxer;
+    ModeJoc m_modeJoc;
+    string m_nomFitxer;
     ColorFitxa m_torn, m_guanyador;
 };
 

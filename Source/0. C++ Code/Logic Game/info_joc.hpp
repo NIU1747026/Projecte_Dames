@@ -3,7 +3,7 @@
 
 // Posició del tauler a la pantalla
 const int POS_X_TAULER = 75;
-const int POS_Y_TAULER = 10;
+const int POS_Y_TAULER = 20;
 
 // Posició de la primera casella del tauler respecte a la cantonada superior esquerra del gràfic del tauler
 const int CASELLA_INICIAL_X = 52;
@@ -19,10 +19,10 @@ const int NUM_FILES_TAULER = 8;
 const int TAMANY_PANTALLA_X = 750;
 const int TAMANY_PANTALLA_Y = 850;
 
-const int TAMANY_BOTO_x = 200;
-const int TAMANY_BOTO_y = 100;
+const int TAMANY_BOTO_x = 270;
+const int TAMANY_BOTO_y = 30;
 
-const int POS_X_BOTO = 187;
+const int POS_X_BOTO = 200;
 
 typedef enum 
 {

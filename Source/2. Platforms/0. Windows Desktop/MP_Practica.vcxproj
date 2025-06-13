@@ -191,6 +191,9 @@
     <ClInclude Include="..\..\0. C++ Code\Logic Game\posicio.hpp" />
     <ClInclude Include="..\..\0. C++ Code\Logic Game\tauler.hpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\1. Resources\data\Games\moviments.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

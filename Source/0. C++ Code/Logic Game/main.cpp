@@ -56,7 +56,7 @@ int main(int argc, const char* argv[])
         if (joc.getMode() == MODE_JOC_NONE)
         {
             joc.escullModeJoc(pantalla, mousePosX, mousePosY, mouseStatus);
-            joc.inicialitza(joc.getMode(), "tauler_inicial_1", "games/joc.txt", pantalla);
+            joc.inicialitza(joc.getMode(), "data/Games/tauler_inicial.txt", "data/Games/moviments.txt", pantalla);
         }
         
         // Actualitza la pantalla

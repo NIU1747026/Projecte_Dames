@@ -12,31 +12,30 @@ void Tauler::inicialitza(const string& nomFitxer)
 	ifstream fitxer;
 	string coordenada;
 	char mirarFitxa;
-	Posicio fitcha;
+	Posicio posFitxa;
 
 	fitxer.open(nomFitxer);
 	
 	if (!fitxer.is_open())
-		cout << "perro mojado ";
 		return;
 	
 	while (!fitxer.eof())
 	{
-		fitxer >> mirarFitxa >> coordenada;
-		fitcha.setPos(coordenada);
+	fitxer >> mirarFitxa >> coordenada;
+	posFitxa.setPos(coordenada);
 		switch (mirarFitxa)
 		{
 			case 'O':
-				m_tauler[fitcha.getFila()][fitcha.getColumna()].inicialitza(COLOR_BLANC,TIPUS_NORMAL);
+				m_tauler[posFitxa.getFila()][posFitxa.getColumna()].inicialitza(COLOR_BLANC,TIPUS_NORMAL);
 				break;
 			case 'D':
-				m_tauler[fitcha.getFila()][fitcha.getColumna()].inicialitza(COLOR_BLANC,TIPUS_DAMA);
+				m_tauler[posFitxa.getFila()][posFitxa.getColumna()].inicialitza(COLOR_BLANC,TIPUS_DAMA);
 				break;
 			case 'X':
-				m_tauler[fitcha.getFila()][fitcha.getColumna()].inicialitza(COLOR_NEGRE,TIPUS_NORMAL);
+				m_tauler[posFitxa.getFila()][posFitxa.getColumna()].inicialitza(COLOR_NEGRE,TIPUS_NORMAL);
 				break;
 			case 'R':
-				m_tauler[fitcha.getFila()][fitcha.getColumna()].inicialitza(COLOR_NEGRE,TIPUS_DAMA);
+				m_tauler[posFitxa.getFila()][posFitxa.getColumna()].inicialitza(COLOR_NEGRE,TIPUS_DAMA);
 				break;
 		default:
 			break;
