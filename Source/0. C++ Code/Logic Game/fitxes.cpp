@@ -43,7 +43,7 @@ void Fitxa::insertaPos(const Posicio& pos)
 		m_posicionsValides[m_nPosicionsValides++] = pos;
 }
 
-Fitxa getFitxa(const Fitxa tauler[N_FILES][N_COLUMNES], const Posicio& pos)
+Fitxa getFitxa(Fitxa** tauler, const Posicio& pos)
 {
 	return tauler[pos.getFila()][pos.getColumna()];
 }

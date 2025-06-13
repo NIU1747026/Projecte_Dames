@@ -59,7 +59,7 @@ public:
 	const TipusFitxa getTipus() const { return m_tipus; };
 	void changeTipus(TipusFitxa nouTipus) { m_tipus = nouTipus; };
 
-	void actualitzaMovimentsFitxa(Fitxa tauler[N_FILES][N_COLUMNES], const Posicio& origen); // actualitza/refa llista de moviments valids de fitxa, tambe posa a les posicions valides;
+	void actualitzaMovimentsFitxa(Fitxa** tauler, const Posicio& origen); // actualitza/refa llista de moviments valids de fitxa, tambe posa a les posicions valides;
 
 	void afegeixPosicionsValides(Posicio Valides[MAX_POSICIONS], int& nValides) const; // afegeix a l'array valides, les posicions valides de la fitxa, amb compte de no repetir-ne cap que ja estigui
 
@@ -71,7 +71,7 @@ public:
 
 private:
 	void insertaPos(const Posicio& pos); // inserta la pos a posicions valides, sempre que no estigui ja posada
-	void getPosicionsValides(Fitxa tauler[N_FILES][N_COLUMNES], const Posicio& origen, const Fitxa& fitxa, FStatus& status, Posicio posicionsPossibles[MAX_POSICIONS], int& nPossibles, FStatus arrStatus[MAX_POSICIONS], Posicio menjada[MAX_POSICIONS], Moviment& movimentActual); //Donats una posicio d'origen i si pot menjar, retorna a l'array les posicions a les que pot anar junt amb un array on a la posició corresponent a la de la posicio possible diu si pot seguir menjant o no. npossibles s'inicialitza a 0.
+	void getPosicionsValides(Fitxa** m_tauler, const Posicio& origen, const Fitxa& fitxa, FStatus& status, Posicio posicionsPossibles[MAX_POSICIONS], int& nPossibles, FStatus arrStatus[MAX_POSICIONS], Posicio menjada[MAX_POSICIONS], Moviment& movimentActual); //Donats una posicio d'origen i si pot menjar, retorna a l'array les posicions a les que pot anar junt amb un array on a la posició corresponent a la de la posicio possible diu si pot seguir menjant o no. npossibles s'inicialitza a 0.
 
 	ColorFitxa m_color;
 	TipusFitxa m_tipus;
@@ -82,7 +82,7 @@ private:
 	Posicio m_posicionsValides[MAX_POSICIONS];
 };
 
-Fitxa getFitxa(const Fitxa tauler[N_FILES][N_COLUMNES], const Posicio& pos);
+Fitxa getFitxa(Fitxa** m_tauler, const Posicio& pos);
 
 
 #endif

@@ -14,10 +14,19 @@ class Tauler
 {
 public:
 	Tauler() {
+		m_tauler = new Fitxa * [N_FILES];
 		for (int i = 0; i < N_FILES; i++)
+		{
+			m_tauler[i] = new Fitxa[N_COLUMNES];
 			for (int j = 0; j < N_COLUMNES; j++)
 				m_tauler[i][j].inicialitza(COLOR_NEGRE, TIPUS_EMPTY);
+		}
 	};
+	~Tauler() {
+		for (int i = 0; i < N_FILES; i++)
+			delete[] m_tauler[i];
+		delete[] m_tauler;
+	}
 
 	Fitxa getFitxaPos(int x, int m) { return m_tauler[x][m]; }
 
@@ -32,7 +41,7 @@ public:
 	void visualitza(); //permite visualizar todas las piezas del tablero, dibujar el fondo, usar metodo visualiza de fitxa
 	void visualtzaMovValids(int x, int y) { m_tauler[x][y].visualtzaMovValids(); }//permite visualizar los mov validos de la fixa seleccionada
 private:
-	Fitxa m_tauler[N_FILES][N_COLUMNES];
+	Fitxa **m_tauler;
 };
 
 #endif

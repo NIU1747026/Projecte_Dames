@@ -1,7 +1,7 @@
 #include "fitxes.h"
 #include "tauler.hpp"
 
-void Fitxa::actualitzaMovimentsFitxa(Fitxa tauler[N_FILES][N_COLUMNES], const Posicio& origen)
+void Fitxa::actualitzaMovimentsFitxa(Fitxa** tauler, const Posicio& origen)
 {
 	Moviment movimentsPendents[MAX_MOVIMENTS];
 	int nMovPendents = 1;
@@ -93,7 +93,7 @@ bool movValid(DireccioMov dir, DireccioMov dirValid, ColorFitxa color, TipusFitx
 	return false;
 }
 
-void Fitxa::getPosicionsValides(Fitxa tauler[N_FILES][N_COLUMNES], const Posicio& origen, const Fitxa& fitxa, FStatus& status, Posicio posicionsPossibles[MAX_POSICIONS], int& nPossibles, FStatus arrStatus[MAX_POSICIONS], Posicio menjada[MAX_POSICIONS], Moviment& movimentActual)
+void Fitxa::getPosicionsValides(Fitxa** tauler, const Posicio& origen, const Fitxa& fitxa, FStatus& status, Posicio posicionsPossibles[MAX_POSICIONS], int& nPossibles, FStatus arrStatus[MAX_POSICIONS], Posicio menjada[MAX_POSICIONS], Moviment& movimentActual)
 {
 	TipusFitxa tipus = fitxa.getTipus();
 	ColorFitxa color = fitxa.getColor();

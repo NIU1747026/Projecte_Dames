@@ -23,7 +23,7 @@ public:
 	const int getFitxesMenjades() const { return m_nFitxesMenjades; };
 	const int getDamesMenjades() const { return m_nDamesMenjades; };
 
-	void menja(Fitxa tauler[N_FILES][N_COLUMNES]); //Recorre menjades i posa a TIPUS_EMPTY (es menja) les fitxes del tauler
+	void menja(Fitxa** tauler); //Recorre menjades i posa a TIPUS_EMPTY (es menja) les fitxes del tauler
 
 	const bool esBuit() const { return m_nRecorregut == 0; };
 	const bool esMenjada(Posicio& pos) const { return !noEsRepeteix(m_menjades, m_nMenjades, pos); }

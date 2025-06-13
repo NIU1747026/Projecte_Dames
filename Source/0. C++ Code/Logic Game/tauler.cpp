@@ -44,7 +44,7 @@ void Tauler::inicialitza(const string& nomFitxer)
 	fitxer.close();
 }
 
-void escriureFitxes(const Fitxa tauler[N_FILES][N_COLUMNES], int fila, int columna, string& res)
+void escriureFitxes(Fitxa** tauler, int fila, int columna, string& res)
 {
 	switch (tauler[fila][columna].getTipus())
 	{

@@ -13,7 +13,7 @@ const bool Moviment::operator>(const Moviment& mov) const
 	return false;
 }
 
-void Moviment::menja(Fitxa tauler[N_FILES][N_COLUMNES])
+void Moviment::menja(Fitxa** tauler)
 {
 	Fitxa f;
 	for (int i = 0; i < m_nMenjades; i++)
