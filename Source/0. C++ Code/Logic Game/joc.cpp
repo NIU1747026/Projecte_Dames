@@ -212,6 +212,7 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus, Screen& p, 
 			{
 				Posicio next[2];
 				m_cua.getSeguentMov(next);
+				cambiaTorn();
 				taulerJoc->mouFitxa(next[0], next[1]);
 				act = false;
 			}
@@ -223,7 +224,7 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus, Screen& p, 
 		{
 			int posTextX = POS_X_TAULER;
 			int posTextY = POS_Y_TAULER + (ALCADA_CASELLA * NUM_FILES_TAULER) + 200;
-			string msg = "NO HI HA MES MOVIMENTS!!";
+			string msg = "NO HI HA MES MOVIMENTS!! Prem ESC per sortir";
 			GraphicManager::getInstance()->drawFont(FONT_WHITE_30, posTextX, posTextY, 0.8, msg);
 		}
 

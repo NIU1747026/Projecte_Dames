@@ -3,18 +3,18 @@
 
 void Fitxa::actualitzaMovimentsFitxa(Fitxa** tauler, const Posicio& origen)
 {
-	Moviment movimentsPendents[MAX_MOVIMENTS];
+	Moviment* movimentsPendents = new Moviment[MAX_MOVIMENTS];
 	int nMovPendents = 1;
 	Moviment movimentActual;
 	Moviment movimentPendent;
 
-	Posicio posicionsValides[MAX_POSICIONS];
+	Posicio* posicionsValides = new Posicio[MAX_POSICIONS];
 	int nPosValides = 0;
 
-	Posicio menjadas[MAX_POSICIONS];
+	Posicio* menjadas = new Posicio[MAX_POSICIONS];
 	Posicio nein;
-	FStatus arrPosEstat[MAX_POSICIONS];
-	FStatus arrMovEstat[MAX_MOVIMENTS];
+	FStatus* arrPosEstat = new FStatus[MAX_POSICIONS];
+	FStatus* arrMovEstat = new FStatus[MAX_MOVIMENTS];
 	arrMovEstat[0].init(true, true, TOT);
 
 	Posicio posicioActual = origen;
@@ -58,6 +58,8 @@ void Fitxa::actualitzaMovimentsFitxa(Fitxa** tauler, const Posicio& origen)
 			getPosicionsValides(tauler, posicioActual, fitxa, estatFitxa, posicionsValides, nPosValides, arrPosEstat, menjadas, movimentActual);
 		}
 	} while (nMovPendents > 0);
+
+	delete[] movimentsPendents, posicionsValides, menjadas, arrPosEstat, arrMovEstat;
 }
 
 bool dinsLimits(const Posicio& p)
