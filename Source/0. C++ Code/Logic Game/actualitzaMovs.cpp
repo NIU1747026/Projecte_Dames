@@ -59,7 +59,11 @@ void Fitxa::actualitzaMovimentsFitxa(Fitxa** tauler, const Posicio& origen)
 		}
 	} while (nMovPendents > 0);
 
-	delete[] movimentsPendents, posicionsValides, menjadas, arrPosEstat, arrMovEstat;
+	delete[] movimentsPendents;
+	delete[] posicionsValides;
+	delete[] menjadas;
+	delete[] arrPosEstat;
+	delete[] arrMovEstat;
 }
 
 bool dinsLimits(const Posicio& p)
